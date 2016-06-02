@@ -33,3 +33,4 @@ php yii migrate  //导入demo初始化数据（如果导入失败，可以到con
 
 后台地址: `/web/admin/` 管理员 帐号 `hehe` 密码 `111111`
 
+# sxunt

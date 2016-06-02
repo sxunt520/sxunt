@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use common\models\LoginForm;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 /**
@@ -18,12 +19,40 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
+//             'access' => [
+//                 'class' => AccessControl::className(),
+//                 'only' => ['logout', 'signup','login','captcha'],
+//                 'rules' => [
+//                     [
+//                         'actions' => ['signup'],
+//                         'allow' => true,
+//                         'roles' => ['?'],
+//                     ],
+//                     [
+//                         'actions' => ['logout'],
+//                         'allow' => true,
+//                         'roles' => ['@'],
+//                     ],
+//                     [
+//                     'actions' => ['login'],
+//                     'allow' => true,
+//                     'roles' => ['?'],
+//                     ],
+//                     [
+//                     'actions' => ['captcha'],
+//                     'allow' => true,
+//                     'roles' => ['?'],
+//                     ],
+//                 ],
+//             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],
             ],
+
+
         ];
     }
 
@@ -42,6 +71,15 @@ class SiteController extends Controller
             'webupload' => [
                 'class' => \yidashi\webuploader\Action::className()
             ],
+             'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'width' => 120,
+                'height' => 40,
+                'padding' => 0,
+                'minLength' => 4,
+                'maxLength' => 4,
+            ],
         ];
     }
 
@@ -52,7 +90,8 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        $this->layout = 'main-login';
+        //$this->layout = 'main-login';
+        $this->layout = false;
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -61,7 +100,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
-            return $this->render('login', [
+            return $this->render('login_new', [
                 'model' => $model,
             ]);
         }
