@@ -19,13 +19,16 @@ $this->params['breadcrumbs'][] = $model->title;
         <span class="time"><?= Html::icon('clock-o')?> <?= date('Y-m-d H:i', $model->created_at) ?></span>
         <span class="views"><?= Html::icon('eye')?> <?= $model->trueView?>次浏览</span>
         <span class="comments"><a href="#comments"><?= Html::icon('comments-o')?> <?=$model->comment?>条评论</a></span>
-        <span class="favourites"><?= Html::a(Html::icon($model->isFavourite ? 'star' : 'star-o') . ' <em>' . $model->favourite . '</em>', ['/favourite'], [
+        <span class="favourites">
+        <?php /* 
+           <?= Html::a(Html::icon($model->isFavourite ? 'star' : 'star-o') . ' <em>' . $model->favourite . '</em>', ['/favourite'], [
                 'data-params' => [
                     'id' => $model->id
                 ],
                 'data-toggle' => 'tooltip',
                 'data-original-title' => '收藏'
             ])?>
+         */ ?>
         </span>
         <!--   打赏作者     -->
         <?= \frontend\widgets\reward\RewardWidget::widget(['articleId' => $model->id])?>

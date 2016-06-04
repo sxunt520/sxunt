@@ -121,6 +121,7 @@ AppAsset::register($this);
         <div class="row">
             <div class="col-sm-3"><a href="<?= \yii\helpers\Url::to(['/page/index', 'name' => 'mianze'])?>">免责声明</a></div>
             <div class="col-sm-3"><a href="<?= \yii\helpers\Url::to(['/page/index', 'name' => 'aboutus'])?>">关于我们</a></div>
+            <div class="col-sm-3"><a href="<?= \yii\helpers\Url::to(['/page/index', 'name' => 'aboutme'])?>">关于我</a></div>
             <div class="col-sm-3"><a href="<?= \yii\helpers\Url::to(['/suggest/create'])?>">问题反馈</a></div>
             <div class="col-sm-3"><a href="https://github.com/yidashi/yii">获取源码</a></div>
         </div>

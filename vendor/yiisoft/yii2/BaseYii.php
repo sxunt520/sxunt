@@ -464,7 +464,7 @@ class BaseYii
      */
     public static function powered()
     {
-        return 'Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a>';
+        return 'Copyright © 2016 - All Rights Reserved - Original Render(SXUNT)';
     }
 
     /**
