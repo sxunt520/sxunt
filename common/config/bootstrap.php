@@ -8,8 +8,8 @@ Yii::setAlias('console', dirname(dirname(__DIR__)) . '/console');
 Yii::setAlias('tests', dirname(dirname(__DIR__)) . '/tests');
 Yii::setAlias('runnerScript', dirname(dirname(dirname(__FILE__))) .'/yii');
 Yii::setAlias('staticroot', dirname(dirname(__DIR__)) . '/static');
-if (YII_ENV_PROD) {
+//if (YII_ENV_PROD) {
     Yii::setAlias('static', 'http://img.sxunt.com');
-} else {
-    Yii::setAlias('static', 'http://img.sxuntdev.com');
-}
+//} else {
+    //Yii::setAlias('static', 'http://img.sxuntdev.com');
+//}
