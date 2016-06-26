@@ -52,7 +52,7 @@ class Skill extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'datetime' => '日期',
-            'pic' => 'Pic',
+            'pic' => 'Pic(220*160)',
             'tuijian' => '是否推荐到首页',
             'tjType' => '推荐到首页类型',
             'from' => '来源',
