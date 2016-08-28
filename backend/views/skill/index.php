@@ -40,7 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ]
                                 ],
                                 'value' => function ($model) {
-                                    return $model->pic;
+                                    $pic=strpos($model->pic, 'http:') === false ? (\Yii::getAlias('@static') . '/' . $model->pic) : $model->pic;
+                                    return $pic;
+                                    //return "http://img.sxunt.com/".$model->pic;
                                 }
                             ],
                             'tuijian:boolean',

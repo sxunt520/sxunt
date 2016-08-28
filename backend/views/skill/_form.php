@@ -22,9 +22,10 @@ use yii\widgets\ActiveForm;
                 ]
             ) ?>
 
-    <?= $form->field($model, 'pic')->widget('yidashi\webuploader\Webuploader') ?>
+    <?php /*  <? = $form->field($model, 'pic')->widget('yidashi\webuploader\Webuploader') ?>  */?>
+    <?= $form->field($model, 'pic')->widget('yidashi\webuploader\Cropper',['options'=>['boxId' => 'picker', 'previewWidth'=>220, 'previewHeight'=>160]]) ?>
     
-    <?= $form->field($model, 'tuijian')->radioList(['0'=>'否','1'=>'是']) ?>
+    <?= $form->field($model, 'tuijian')->radioList(['false'=>'否','true'=>'是']) ?>
     
     <?= $form->field($model, 'tjType')->dropDownList(['1'=>'名词解释','2'=>'器材基础','3'=>'拍摄技巧','4'=>'后期处理'], ['prompt'=>'未设置','style'=>'width:120px']) ?>
 

@@ -7,7 +7,6 @@
 namespace yidashi\webuploader;
 use yii\web\AssetBundle;
 class WebuploaderAsset extends AssetBundle{
-
     public $css = [
         'webuploader.css',
     ];

@@ -27,7 +27,9 @@ class Action extends \yii\base\Action
         //close csrf
         Yii::$app->request->enableCsrfValidation = false;
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $this->driver = Yii::$app->request->get('driver', 'local');
+        if (empty($this->driver)) {
+            $this->driver = isset(Yii::$app->params['webuploader_driver']) ? Yii::$app->params['webuploader_driver'] : 'local';
+        }
         parent::init();
     }
 
@@ -77,7 +79,7 @@ class Action extends \yii\base\Action
 
     private function qiniu()
     {
-        $this->config = array_merge($this->config, Yii::$app->params['webuploader_qiniu_config']);
+        $this->config = array_merge($this->config, Yii::$app->params['qiniu']);
         $bucket = $this->config['bucket'];
         $accessKey = $this->config['accessKey'];
         $secretKey = $this->config['secretKey'];

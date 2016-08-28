@@ -16,10 +16,8 @@ class Webuploader extends InputWidget{
     //默认配置
     protected $_options;
     public $server;
+    public $domain;
     public $driver;
-
-    protected $hiddenInput;
-
     public function init()
     {
         parent::init();
@@ -30,36 +28,38 @@ class Webuploader extends InputWidget{
         if ($this->driver == 'local') {
             // 初始化@static别名,默认@web/static,最好根据自己的需求提前设置好@static别名
             $static = \Yii::getAlias('@static', false);
-            $staticroot = \Yii::getAlias('@staticroot', false);
-            if (!$static || !$staticroot) {
+            if (!$static) {
                 \Yii::setAlias('@static', '@web/static');
-                \Yii::setAlias('@staticroot', '@webroot/static');
+            }
+        } else if ($this->driver == 'qiniu') {
+            if (empty($this->domain)) {
+                $this->domain = \Yii::$app->params['qiniu']['domain'];
+            }
+            if (empty($this->domain)) {
+                throw new Exception('七牛上传方式必须设置根域名');
             }
         }
-        $this->server = $this->server ?: Url::to(['/site/webupload', 'driver' => $this->driver]);
         $this->options['boxId'] = isset($this->options['boxId']) ? $this->options['boxId'] : 'picker';
+        $this->options['innerHTML'] = isset($this->options['innerHTML']) ? $this->options['innerHTML'] : '<button class="btn btn-primary">选择文件</button>';
+        $this->options['innerHTML'] .= '<div id="webuploaderList" class="uploader-list"></div>';
         $this->options['previewWidth'] = isset($this->options['previewWidth']) ? $this->options['previewWidth'] : '250';
         $this->options['previewHeight'] = isset($this->options['previewHeight']) ? $this->options['previewHeight'] : '150';
-        if($this->hasModel()){
-            $this->hiddenInput = Html::activeHiddenInput($this->model, $this->attribute);
-        }else{
-            $this->hiddenInput = Html::hiddenInput($this->name, $this->value);
-        }
     }
     public function run()
     {
         call_user_func([$this, 'register' . ucfirst($this->driver) . 'ClientJs']);
-        $value = $this->hasModel() ? Html::getAttributeValue($this->model, $this->attribute) : $this->value;
-        // 已经传过图片,显示预览图
-        $image = $value ? Html::img(
+        $value = Html::getAttributeValue($this->model, $this->attribute);
+        $content = $value ?
+            Html::img(
                 strpos($value, 'http:') === false ? (\Yii::getAlias('@static') . '/' . $value) : $value,
                 ['width'=>$this->options['previewWidth'],'height'=>$this->options['previewHeight']]
-        ) : '';
-        return $this->render('main', [
-            'boxId' => $this->options['boxId'],
-            'hiddenInput' => $this->hiddenInput,
-            'image' => $image
-        ]);
+            ) :
+            $this->options['innerHTML'];
+        if($this->hasModel()){
+            return Html::tag('div', $content, ['id'=>$this->options['boxId']]) . Html::activeHiddenInput($this->model, $this->attribute);
+        }else{
+            return Html::tag('div', $content, ['id'=>$this->options['boxId']]) . Html::hiddenInput($this->name, $this->value);
+        }
     }
 
     /**
@@ -68,8 +68,8 @@ class Webuploader extends InputWidget{
     private function registerLocalClientJs()
     {
         WebuploaderAsset::register($this->view);
-        $web = rtrim(\Yii::getAlias('@static'), '/');
-        $server = $this->server;
+        $web = \Yii::getAlias('@static');
+        $server = $this->server ?: Url::to(['/site/webupload']);
         $swfPath = \Yii::getAlias('@webuploader/assets');
         $this->view->registerJs(<<<JS
 var uploader = WebUploader.create({
@@ -96,7 +96,7 @@ var uploader = WebUploader.create({
     });
 // 文件上传过程中创建进度条实时显示。
 uploader.on( 'uploadProgress', function( file, percentage ) {
-    var li = $( '#{$this->options['boxId']} .uploader-list'),
+    var li = $( '#webuploaderList'),
         percent = li.find('.progress .progress-bar');
 
     // 避免重复创建
@@ -105,15 +105,14 @@ uploader.on( 'uploadProgress', function( file, percentage ) {
                 .appendTo( li )
                 .find('.progress-bar');
     }
-    console.log(percent);
+
     percent.css( 'width', percentage * 100 + '%' );
 });
 // 完成上传完了，成功或者失败，先删除进度条。
 uploader.on( 'uploadSuccess', function( file, data ) {
-    var url = '{$web}/' + data.url;
     $( '#'+file.id ).find('p.state').text('上传成功').fadeOut();
-    $( '#{$this->options['boxId']} .webuploader-pick' ).html('<img src="'+url+'" width="{$this->options['previewWidth']}" height="{$this->options['previewHeight']}"/>');
-    $( '#{$this->options['id']}' ).val(url);
+    $( '#{$this->options['boxId']} .webuploader-pick' ).html('<img src="{$web}/'+data.url+'" width="{$this->options['previewWidth']}" height="{$this->options['previewHeight']}"/>');
+    $( '#{$this->options['id']}' ).val(data.url);
     $( '#{$this->options['boxId']} .webuploader-pick' ).siblings('div').width("{$this->options['previewWidth']}").height("{$this->options['previewHeight']}");
 });
 JS
@@ -128,7 +127,6 @@ JS
         WebuploaderAsset::register($this->view);
         $tokenUrl = $this->server ?: Url::to(['/site/webupload']);
         $swfPath = \Yii::getAlias('@webuploader/assets');
-        $domain = rtrim(\Yii::$app->params['webuploader_qiniu_config']['domain'], '/');
         $this->view->registerJs(<<<JS
 $.get("{$tokenUrl}",function(res) {
     var uploader = WebUploader.create({
@@ -160,7 +158,7 @@ $.get("{$tokenUrl}",function(res) {
     });
 // 文件上传过程中创建进度条实时显示。
 uploader.on( 'uploadProgress', function( file, percentage ) {
-    var li = $( '#{$this->options['boxId']} .uploader-list'),
+    var li = $( '#webuploaderList'),
         percent = li.find('.progress .progress-bar');
 
     // 避免重复创建
@@ -174,9 +172,9 @@ uploader.on( 'uploadProgress', function( file, percentage ) {
 });
     // 完成上传完了，成功或者失败，先删除进度条。
     uploader.on( 'uploadSuccess', function( file, data ) {
-        var url = '{$domain}/' + data.key;
+        var url = data.key;
         $( '#'+file.id ).find('p.state').text('上传成功').fadeOut();
-        $( '#{$this->options['boxId']} .webuploader-pick' ).html('<img src="'+url+'" width="{$this->options['previewWidth']}" height="{$this->options['previewHeight']}"/>');
+        $( '#{$this->options['boxId']} .webuploader-pick' ).html('<img src="{$this->domain}'+url+'" width="{$this->options['previewWidth']}" height="{$this->options['previewHeight']}"/>');
         $( '#{$this->options['id']}' ).val(url);
         $( '#{$this->options['boxId']} .webuploader-pick' ).siblings('div').width("{$this->options['previewWidth']}").height("{$this->options['previewHeight']}");
     });

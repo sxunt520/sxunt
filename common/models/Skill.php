@@ -33,7 +33,7 @@ class Skill extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['datetime', 'pic', 'tuijian', 'tjType', 'from', 'author', 'title', 'content'], 'required'],
+            [['datetime', 'from', 'author', 'title', 'content'], 'required'],
             [['datetime'], 'safe'],
             [['tuijian', 'content'], 'string'],
             [['tjType'], 'integer'],
