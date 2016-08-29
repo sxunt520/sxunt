@@ -22,14 +22,28 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     'id',
-                    'title',
                     'category',
+                    'title',
                     'status:boolean',
                     // 'author',
                     // 'created_at',
                     // 'updated_at',
                     // 'status',
-                    // 'cover',
+                    [
+                                'label' => '封面',
+                                'format' => [
+                                    'image',
+                                    [
+                                        'width'=>'84',
+                                        //'height'=>'84'
+                                    ]
+                                ],
+                                'value' => function ($model) {
+                                    $pic=strpos($model->cover, 'http:') === false ? (\Yii::getAlias('@static') . '/' . $model->cover) : $model->cover;
+                                    return $pic;
+                                    //return "http://img.sxunt.com/".$model->pic;
+                                }
+                     ],
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],

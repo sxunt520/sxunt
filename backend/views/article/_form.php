@@ -21,11 +21,11 @@ use yii\widgets\ActiveForm;
 
             <?= $form->field($model, 'category_id')->dropDownList(\common\models\Category::getDropDownlist()) ?>
 
-            <?php //$form->field($dataModel, 'content')->widget('kucha\ueditor\UEditor', ['options' => ['style' => 'height:500px']]) ?>
-            <?= $form->field($dataModel, 'content')->widget(\yidashi\markdown\Markdown::className(), ['options' => ['style' => 'height:500px']]) ?>
+            <?= $form->field($dataModel, 'content')->widget('kucha\ueditor\UEditor', ['options' => ['style' => 'height:200px']]) ?>
+            <?php //=$form->field($dataModel, 'content')->widget(\yidashi\markdown\Markdown::className(), ['options' => ['style' => 'height:500px']]) ?>
 
-            <?= $form->field($model, 'cover')->widget('yidashi\webuploader\Webuploader') ?>
-
+            <?= $form->field($model, 'cover')->widget('yidashi\webuploader\Cropper',['options'=>['boxId' => 'picker', 'previewWidth'=>158, 'previewHeight'=>158]]) ?>
+            <?= $form->field($model, 'qcPic')->widget('yidashi\webuploader\Cropper',['options'=>['boxId' => 'picker2', 'previewWidth'=>220, 'previewHeight'=>160]]) ?>
             <?= $form->field($model, 'status')->radioList(['待审', '激活']) ?>
 
         </div>
