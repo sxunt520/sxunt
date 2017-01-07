@@ -380,10 +380,10 @@
 
 
 /*+++++++++++++++++++*/
-.cropper-wraper {
+.cropper-wraper,.cropper-wraper2 {
     position: relative;
 }
-.upload-btn {
+.upload-btn,.upload-btn2 {
     background: #ffffff;
     border: 1px solid #cfcfcf;
     color: #565656;
@@ -398,9 +398,9 @@
     right: 1em;
     bottom: 2em;
 }
-.upload-btn:hover {
+.upload-btn:hover,.upload-btn2:hover {
     background: #f0f0f0;
 }
-.cropper-wraper img {
+.cropper-wraper img,.cropper-wraper2 img {
     max-width: inherit !important;
 }

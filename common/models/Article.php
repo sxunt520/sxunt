@@ -53,7 +53,7 @@ class Article extends \yii\db\ActiveRecord
             [['category_id'], 'setCategory'],
             ['category_id', 'exist', 'targetClass' => Category::className(), 'targetAttribute' => 'id'],
             [['title', 'category', 'author'], 'string', 'max' => 50],
-            [['author', 'cover', 'source'], 'string', 'max' => 255],
+            [['author', 'cover','qcPic', 'source'], 'string', 'max' => 255],
             [['desc', 'tagNames'], 'safe']
         ];
     }
