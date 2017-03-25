@@ -48,6 +48,15 @@ return array (
       '@kartik/datetime' => $vendorDir . '/kartik-v/yii2-widget-datetimepicker',
     ),
   ),
+    'kartik-v/yii2-widget-fileinput' =>
+    array (
+        'name' => 'kartik-v/yii2-widget-fileinput',
+        'version' => '1.0.4.0',
+        'alias' =>
+        array (
+            '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
+        ),
+    ),
   'kartik-v/yii2-detail-view' => 
   array (
     'name' => 'kartik-v/yii2-detail-view',

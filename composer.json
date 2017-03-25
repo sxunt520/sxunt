@@ -25,13 +25,15 @@
     "yidashi/yii2-bootstrap-markdown" : "^1.0",
     "mihaildev/yii2-elfinder" : "^1.0",
     "trntv/yii2-datetime-widget" : "^1.0.0",
-    "qiniu/php-sdk" : "^7.0"
+    "qiniu/php-sdk" : "^7.0",
+    "kartik-v/yii2-widget-fileinput": "@dev",
   },
   "require-dev" : {
     "yiisoft/yii2-codeception" : "*",
     "yiisoft/yii2-debug" : "*",
     "yiisoft/yii2-gii" : "*",
-    "yiisoft/yii2-faker" : "*"
+    "yiisoft/yii2-faker" : "*",
+	"yiisoft/yii2-jui": "*",
   },
   "support" : {
     "issues" : "https://github.com/yiisoft/yii2/issues?state=open",
