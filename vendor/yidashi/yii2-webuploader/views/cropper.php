@@ -12,7 +12,15 @@
     </div>
     <div class="upload-btn">上传</div>
 </div>
-<?php $this->registerJs(<<<Js
+<?php 
+if($options['previewWidth']=='auto' || $options['previewHeight']=='auto'){
+    $aspectRatio='';
+}else{
+    //$aspectRatio=$options['previewWidth'] / $options['previewHeight'];
+    $aspectRatio='aspectRatio: '.$options['previewWidth'].' / '.$options['previewHeight'].',';
+}
+
+ $this->registerJs(<<<Js
 
     // ---------------------------------
     // ---------  Uploader -------------
@@ -228,7 +236,8 @@
                     image.cropper({
                         viewMode:1,
                         dragMode:'move',
-                        aspectRatio: {$options['previewWidth']} / {$options['previewHeight']},
+                        //aspectRatio: {$options['previewWidth']} / {$options['previewHeight']},
+                        {$aspectRatio}
                         done: function(data) {
                             // console.log(data);
                         }
