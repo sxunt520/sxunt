@@ -464,7 +464,7 @@ class BaseYii
      */
     public static function powered()
     {
-        return 'Copyright © 2016 - All Rights Reserved - Original Render(SXUNT)';
+        return 'Copyright © 2017 - All Rights Reserved - Original Render(SXUNT)';
     }
 
     /**
