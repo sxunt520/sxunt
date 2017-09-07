@@ -32,9 +32,9 @@ class PushBehavior extends Behavior
     {
         $urls = array(
 //            Url::to(['/article/view', 'id' => $event->sender->getPrimaryKey()],true),
-            'http://www.51siyuan.cn/'.$event->sender->getPrimaryKey(),
+            'http://www.sxunt.com/'.$event->sender->getPrimaryKey(),
         );
-        $api = 'http://data.zz.baidu.com/urls?site=www.51siyuan.cn&token=qm04kFWOTu8K7pEA';
+        $api = 'http://data.zz.baidu.com/urls?site=www.sxunt.com&token=qm04kFWOTu8K7pEA';
         $ch = curl_init();
         $options = array(
             CURLOPT_URL => $api,
