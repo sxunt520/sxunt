@@ -23,6 +23,11 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use common\models\Banner;
+
+use common\models\Adv;
+use common\models\Skill;
+use common\models\Edify;
 
 /**
  * Site controller.
@@ -156,39 +161,176 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $news = Article::find()
-            ->active()
-            ->andWhere(['<>', 'cover', ''])
+        //首页-头部banner三
+        $adv_banner=Adv::find()
+            ->andWhere(['=', 'type_id', 1])
             ->orderBy(['id' => SORT_DESC])
-            ->limit(40)
+            ->limit(3)
             ->all();
-        $slider = Article::find()
-            ->active()
-            ->orderBy(['view' => SORT_DESC])
-            ->limit(5)
-            ->all();
-        $recommend = Article::find()
-            ->active()
-            ->orderBy(['comment' => SORT_DESC])
-            ->limit(10)
-            ->all();
-        $dataProvider = new ActiveDataProvider([
-            'query' => Article::find()->active(),
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC
-                ]
-            ]
-        ]);
-        $categorys = Category::find()->all();
-        $hotTags = Tag::hot();
+        
+        //首页-新闻左测四
+        $adv_news=Adv::find()
+        ->andWhere(['=', 'type_id', 2])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(4)
+        ->all();
+        
+        //what's right now
+        $rightnow_news = Article::find()
+        ->active()
+        //->andWhere(['<>', 'cover', ''])
+        ->orderBy(['view' => SORT_DESC])
+        ->limit(5)
+        ->all();
+        
+        //影讯
+        $consult_news = Article::find()
+        ->active()
+        ->andWhere(['=', 'category_id', 1])
+        ->andWhere(['<>', 'cover', ''])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(4)
+        ->all();
+        
+        //器材
+        $equlpment_news = Article::find()
+        ->active()
+        ->andWhere(['=', 'category_id', 2])
+        ->andWhere(['<>', 'cover', ''])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(4)
+        ->all();
+        
+        //其它
+        $other_news=Article::find()
+        ->orwhere(['category_id' => [3,4,5,6]])
+        ->andWhere(['<>', 'cover', ''])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(4)->all();
+        
+        //最新资讯
+        $now_news = Article::find()
+        ->active()
+        ->andWhere(['<>', 'cover', ''])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(10)
+        ->all();
+        
+        //器材推荐
+        $tj_equlpment_news = Article::find()
+        ->active()
+        ->andWhere(['=', 'category_id', 2])
+        ->andWhere(['<>', 'qcPic', ''])
+        ->andWhere(['<>', 'cover', ''])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(8)
+        ->all();
+        
+        //摄影技巧
+        $skill = Skill::find()
+        ->andWhere(['=', 'tuijian', true])
+        ->andWhere(['=', 'tjType', 3])
+        ->andWhere(['<>', 'pic', ''])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(12)
+        ->all();
+        
+       //后期处理
+        $houqi = Skill::find()
+        ->andWhere(['=', 'tuijian', true])
+        ->andWhere(['=', 'tjType', 4])
+        ->andWhere(['<>', 'pic', ''])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(12)
+        ->all();
+        
+       //灵感渲染
+       $edify=array();
+        //人物系
+        $edify[1]=Edify::find()
+        ->where(['source' => 1])
+        ->andWhere(['<>', 'picurl', ''])
+        ->andWhere(['=', 'checkinfo', true])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(5)->all();
+        
+        //风光生态
+        $edify[2]=Edify::find()
+        ->orwhere(['source' => [2,4]])
+        ->andWhere(['<>', 'picurl', ''])
+        ->andWhere(['=', 'checkinfo', true])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(5)->all();
+        
+        //纪实抓拍
+        $edify[3]=Edify::find()
+        ->where(['source' => 3])
+        ->andWhere(['<>', 'picurl', ''])
+        ->andWhere(['=', 'checkinfo', true])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(3)->all();
+        
+        //生活记录
+        $edify[4]=Edify::find()
+        ->where(['source' => 5])
+        ->andWhere(['<>', 'picurl', ''])
+        ->andWhere(['=', 'checkinfo', true])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(3)->all();
+        
+        //其它
+        $edify[5]=Edify::find()
+        ->orwhere(['source' => [6,7]])
+        ->andWhere(['<>', 'picurl', ''])
+        ->andWhere(['=', 'checkinfo', true])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(4)->all();
+        
+        
+//         $news = Article::find()
+//             ->active()
+//             ->andWhere(['<>', 'cover', ''])
+//             ->orderBy(['id' => SORT_DESC])
+//             ->limit(40)
+//             ->all();
+//         $slider = Article::find()
+//             ->active()
+//             ->orderBy(['view' => SORT_DESC])
+//             ->limit(5)
+//             ->all();
+//         $recommend = Article::find()
+//             ->active()
+//             ->orderBy(['comment' => SORT_DESC])
+//             ->limit(10)
+//             ->all();
+//         $dataProvider = new ActiveDataProvider([
+//             'query' => Article::find()->active(),
+//             'sort' => [
+//                 'defaultOrder' => [
+//                     'id' => SORT_DESC
+//                 ]
+//             ]
+//         ]);
+//         $categorys = Category::find()->all();
+//         $hotTags = Tag::hot();
         return $this->render('index', [
-            'news' => $news,
-            'slider' => $slider,
-            'recommend' => $recommend,
-            'dataProvider' => $dataProvider,
-            'categorys' => $categorys,
-            'hotTags' => $hotTags
+//             'news' => $news,
+//             'slider' => $slider,
+//             'recommend' => $recommend,
+//             'dataProvider' => $dataProvider,
+//             'categorys' => $categorys,
+//             'hotTags' => $hotTags,
+            'adv_banner'=>$adv_banner,
+            'adv_news'=>$adv_news,
+            'rightnow_news'=>$rightnow_news,
+            'consult_news'=>$consult_news,
+            'equlpment_news'=>$equlpment_news,
+            'other_news'=>$other_news,
+            'now_news'=>$now_news,
+            'tj_equlpment_news'=>$tj_equlpment_news,
+            'skill'=>$skill,
+            'houqi'=>$houqi,
+            'edify'=>$edify,
         ]);
     }
     /**

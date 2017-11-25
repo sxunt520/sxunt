@@ -1,0 +1,150 @@
+@import url("./pub.css");
+.wonder{ height:32px; overflow:hidden; background:#FFFFFF;}
+.wonderC{ width:960px;height:32px; background:url(../images/wonderwall.gif) no-repeat left center;}
+.wonderPic{ overflow:hidden; background: url(../images/wonderwall2.jpg) center top; padding:30px 0;}
+
+.page{width:910px; overflow:hidden; text-align:center; background:#F6F2E6; padding:20px 0; font-size:14px; letter-spacing:3px;}
+.page a{ color:#A9B200;}
+.page a:hover{ text-decoration:underline;}
+.diaBox{height:auto;background:#F6F2E6; overflow:hidden;}
+.diaBoxC{width:910px; height:auto;overflow:hidden; background:url(../images/centerBorder.gif) repeat-y center;}
+.diary{height:413px; overflow:hidden;}
+.diaryT{ height:136px; overflow:hidden;}
+.time{width:118px;height:57px; overflow:hidden; background:#212121; border:1px solid #30302F; margin-top:38px;}
+.time h3{ font-size:16px; color:#A9B200;line-height:28px; margin-top:4px; text-align:center; letter-spacing:1px;}
+.time p{ font-size:15px; color:#626710;line-height:17px; text-align:center;}
+.diaryB{height:263px; overflow:hidden;}
+.diaryL{width:451px;height:259px; overflow:hidden;border:1px solid #569231; border-left:none; border-right:none;}
+.diaryL img{padding:4px; border:1px solid #E8E5D9; background:#B9B49D;margin:19px 60px 20px 70px;}
+.diaryR{width:452px;height:259px; overflow:hidden; border:1px solid #569231; border-left:none; border-right:none;}
+.diaryRT{width:452px;height:64px; overflow:hidden; border-bottom:1px dashed #569231;}
+.diaryRT p{height:64px; line-height:68px; font-size:12px;}
+.diaryRT span{padding:0 10px;}
+.diaryRT span strong{ color:#210D0B;}
+.diaryRB{width:452px;height:193px;overflow:hidden;}
+.diaryRB h2{height:42px; line-height:42px; font-size:16px;text-align:center; margin-top:13px; overflow:hidden;}
+.diaryRB h2 a{color:#0D0A08;}
+.diaryRB h2 a:hover{color:#AC411D;}
+.diaText{ height:109px; overflow:hidden;}
+.diaText p{font-size:13px; line-height:26px; text-indent:28px; padding:0 15px 0 20px;}
+.diaText p a{ color:#AC411D;}
+.diaText p a:hover{ text-decoration:underline;}
+.diaryRB span.no5{display:block; text-align:right; font-size:12px; color:#5F6675; font-weight:bold; padding-right:15px;}
+
+.left{float:left;}
+.right{float:right;}
+
+.message{height:auto; overflow:hidden; background:#F6F2E6;}
+.messageC{width:910px; height:auto; overflow:hidden; background:url(../images/massagexx2.gif) no-repeat right bottom;}
+.messageT{width:910px;height:160px;overflow:hidden; background: url(../images/massageT.gif) no-repeat left bottom;}
+.messageT p{padding:104px 35px 0 46px; font-size:14px; line-height:30px;}
+.messageB{width:910px; height:514px; overflow:hidden; background:url(../images/border2.gif) no-repeat left bottom;}
+.messageL{width:447px; height:514px; overflow:hidden; float:left; background:url(../images/border1.gif) no-repeat left top;}
+.messageL table{ margin:40px 0 24px 46px;}
+.messageL table td{ font-size:14px; line-height:26px;}
+input,textarea{width:238px;height:23px; border:1px solid #8DA8C1; background:#fff;}
+.messageL table td h3{ height:34px; line-height:34px; font-size:16px; font-family:微软雅黑;}
+.content{ width:399px; height:162px;}
+.submit{width:51px;height:22px;float:right; margin:12px 56px 5px 0; font-weight:bold; cursor:pointer;}
+.messageR{width:463px; height:514px; overflow:hidden; float:right; background:url(../images/massagexx.gif) no-repeat left top;}
+.messageCC{width:399px;height:442px;overflow-y: scroll;margin:34px auto 38px; padding-right:10px; padding-left:7px;}
+.mes{width:379px;height:auto;overflow:hidden; border-bottom:1px dashed #21201F;}
+.mesT{ height:36px; overflow:hidden;line-height:36px; font-size:14px; border-bottom:1px solid #D8D6CF;}
+.mesT span{font-size:13px;height:36px;line-height:43px;overflow:hidden;display:inline-block;}
+.mesT span.mes1{float:left;width:125px;}
+.mesT span.mes2{float:left; padding-left:10px;}
+.mesT span.mes3{ float:right;}
+.mesB{ height:auto; overflow:hidden;}
+.mesB p{ line-height:25px; padding:6px 0; text-indent:24px;}
+
+.aboutme{ background:#F6F2E6; height:auto; overflow:hidden;}
+.aboutmeC{width:910px; height:1057px; overflow:hidden; background:url(../images/aboutMe.jpg) no-repeat; position:relative;}
+.aboutText{width:839px; height:35px; line-height:35px; font-size:14px; position:absolute; left:46px;top:103px;}
+.mypic{width:258px; height:196px;position:absolute; left:128px;top:228px; border:1px solid #CDCDCD; background:#fff;}
+.mypic img{ margin:4px;}
+.myewm{width:154px;height:154px; overflow:hidden; position: absolute;left:98px;top:813px;}
+.mytext{ width:271px; height:299px; overflow:hidden; position:absolute; left:504px; top:286px;font-size:14px; line-height:30px;}
+.mecontent{width:418px; height:184px; overflow:hidden; position:absolute; left:450px; top:790px;font-size:13px; line-height:30px;}
+.mecontent p{ text-indent:26px;}
+
+.diapage{width:960px; height:auto; overflow:hidden;}
+.diapageT{ border-bottom:1px solid #1D1A18; overflow:hidden; height:30px; margin-top:17px;}
+.diapageBB{ border-top:1px solid #1D1A18; overflow:hidden; height:30px; margin-bottom:17px;}
+.diapageTC{ width:908px; height:30px; line-height:30px; border:1px solid #1D1A18; border-top:none; border-bottom:none; color:#569231; font-size:14px;}
+.diapageTC a{ color:#569231;}
+.diapageTC a:hover{ color:#A23E1C; text-decoration:underline;}
+.diapageTC p{ padding-left:12px; float:left;}
+.fx,.diapageTC span{ float:right;padding-right:12px;}
+.diapageB{ overflow:hidden; height:auto; width:908px; border:1px solid #1D1A18; border-top:none; border-bottom:none;}
+.diapageBC{ width:856px; height:auto; overflow:hidden;}
+.diapageBC1{height:auto; overflow:hidden; padding-bottom:20px;}
+
+.diatime{ height:47px; overflow:hidden;border-bottom:1px solid #D8D6CF;}
+.diatime2{ height:47px; overflow:hidden;border-bottom:1px solid #569231;}
+.diatimeL{ width:50%;height:47px;line-height:47px;font-size:13px; overflow:hidden; float:left;}
+.diatimeR{height:32px; padding-top:15px;overflow:hidden; float:right;}
+#ckepop a{color:#000;}
+.tq{ height:43px; line-height:43px; border-bottom:1px solid #569231;font-size:14px; overflow:hidden; width:856px;}
+.tq span{overflow:hidden; display:inline-block; float:left;}
+.tq span.tq1{ width:25%;}
+.tq span.tq2{ width:50%; text-align:center;}
+.tq span.tq3{ width:25%; float:right; text-align:right;}
+h2.diaTitle{border-bottom:1px dashed #AEADA9; height:55px; line-height:55px; text-align:center; font-size:18px; font-family:微软雅黑; margin-bottom:30px; color:#AC411D}
+h2.diaTitle22{height:55px; line-height:55px; text-align:center; font-size:18px; font-family:微软雅黑; margin-bottom:0; color:#AC411D; overflow:hidden;}
+.edifyText{border:1px dashed #AEADA9; background:#fff;height:auto; font-size:14px; font-family:微软雅黑; line-height:24px; overflow:hidden; padding:20px; overflow:hidden;}
+.edifyText *{ text-indent:0; margin:0; padding:0}
+.edifyText2{border:1px dashed #569231; background:#fff;padding:20px 25px 15px; height:auto; font-size:14px; font-family:微软雅黑; line-height:24px; overflow:hidden; margin-top:15px;}
+.diaMain,.diaMain2{ width:832px; overflow:hidden; font-size:12px; line-height:28px; padding-bottom:30px;}
+.diaMain22{ width:830px; overflow:hidden; font-size:12px; line-height:28px; padding-bottom:30px;}
+.diaMain img{ margin-bottom:15px;}
+.diaMain2 img{ margin:15px auto;}
+.edifyContent{ overflow:hidden; height:auto; font-size:14px; line-height:28px; padding-top:20px;}
+.edifyContent img{ margin:15px auto 0;}
+/*edifyBox*/
+.edifyBox{height:auto;overflow:hidden; margin-top:20px;}
+.edifyPic{ max-width:830px; height:auto; overflow:hidden;position:relative;}
+.edifyPic h3{ height:22px; line-height:22px; font-size:12px; color:#569231; font-weight:normal; text-align:center; float:left; width:100%;}
+.edifyPic img{float:left; max-width:830px;}
+
+.exif{ width:360px; height:210px; overflow:hidden; position:absolute; left:0; bottom:0; z-index:2000; display:none;}
+.exif2{ width:40px; height:28px; position:absolute; left:6px; bottom:8px;}
+.exif2 a{ width:40px; height:28px; line-height:28px; text-align:center; display: block;color:#FFF; background:#000;outline:none; position:relative; z-index:9999; border-radius:2px;}
+.exif2 a:hover,.exif2 a.xHover{ background:none;}
+.exifBg{ width:350px; height:195px; overflow:hidden; position:absolute; left:0; bottom:0; z-index:3000; background:#000;filter:Alpha(Opacity=80);opacity:0.8;-moz-opacity:0.8; display:none; border-radius:4px;}
+.exifText{ width:380px; height:195px; overflow:hidden; position:absolute; left:0; bottom:0; z-index:4000; display:none;}
+.exifText dl{ overflow:hidden; margin:12px 0 0 15px;}
+.exifText dl dt{ width:58px; float:left; color:#AAA; height:22px; line-height:22px; overflow: hidden;}
+.exifText dl dd{ width:110px; float:left;color:#fff;height:22px; line-height:22px; overflow:hidden;}
+/*edifyBox*/
+
+.skillT{height:67px; overflow:hidden;}
+.skillT2{ width:886px; height:30px;overflow:hidden;margin:17px auto; border-bottom:2px solid #457A25;}
+.skillT2 a{ font-size:14px; line-height:30px; height:30px; padding:0 15px; display:inline-block; color:#000; outline:none;}
+.skillT2 a:hover,.hovertab{ font-size:16px !important; color:#569231 !important; background:url(../images/greenBtn.gif) no-repeat center bottom; font-weight:bold;}
+.dis{ width:100%; height:auto; overflow:hidden;display:block;}
+.undis{display:none;}
+.skillListL,.skillListC,.skillListR{width:302px;overflow:hidden; float:left;}
+.skillListL{ border-right:1px dashed #8EB471;}
+.skillListC{ border-right:1px dashed #8EB471;}
+.skillListR{}
+.skillListBox{ width:249px; height:auto; overflow:hidden; line-height:22px;}
+.skillListBox h3{ font-size:14px;color:#569231; line-height:28px;}
+.skillListBox strong{ line-height:30px;}
+.skillListBox a{ color:#000;}
+.skillListBox a:hover{ color:#A4401C; text-decoration:underline;}
+.skillListBox span{ margin:0 7px;}
+.gr{ color:#569231 !important;}
+
+#content{width:960px;margin:0px auto;overflow:hidden;}
+.waterfall{width:972px}
+.dym-dl{width:310px;height:1100px;padding-right:12px;float:left;overflow:hidden;position:relative}
+.dym{border:1px solid #efeff0;background:#f7f7f7;height:auto;padding:14px;margin:0 0 12px 12px;float: left;overflow:hidden;display:inline; position:relative;}
+.dym img{max-width:279px;_width:279px}
+
+.dis{display:block;}
+.dym{ cursor:pointer}
+.fontsBg{width:310px;height:100%;_height:auto;_padding:30px 0;position:absolute; left:0px; bottom:0px; background:#000;filter:Alpha(Opacity=50);opacity:0.5;-moz-opacity:0.5;}
+.fonts2,.fonts2 a{width:310px;height:60%;padding-top:40%;line-height:30px;_height:auto;_line-height:20px;_padding:40px 0 25px;position:absolute; left:0px; bottom:0px; color:#fff; text-align:center; overflow:hidden;}
+.fonts2,.fonts2 a:hover{}
+.am-wrapper{float:left;position:relative;overflow:hidden;}
+.am-wrapper img{position:absolute;outline:none;}

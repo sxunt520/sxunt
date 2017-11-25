@@ -1,0 +1,57 @@
+﻿
+#top-bottom-menu {
+	font:12px/1.5 Arial, "宋体";
+	position:fixed;
+	height:auto;
+	text-align:center;
+	z-index:9999;
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||140)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+}
+#top-bottom-menu #dstbm-top {
+	position:absolute;
+	border:1px #cccccc solid;
+	display:none;
+	cursor:pointer;
+}
+#top-bottom-menu #dstbm-menu {
+	position:absolute;
+	border:1px #cccccc solid;
+	cursor:pointer;
+}
+#top-bottom-menu #dstbm-menu:hover {
+/*			width:500px;
+			background:none;*/
+		 }
+#top-bottom-menu #dstbm-menu a {
+	color:#569231;
+	text-decoration:none;
+}
+#top-bottom-menu #dstbm-menu a:hover {
+	text-decoration:underline;
+	color:#AC411D;
+}
+/*		#top-bottom-menu #dstbm-menu:hover ul{
+			display:block;
+		 }
+*/		#top-bottom-menu #dstbm-menu #dstbmmenu {
+	display:none;
+}
+#top-bottom-menu #dstbm-menu ul {
+	list-style-type:none;
+	padding:0px;
+	margin:0px;
+}
+#top-bottom-menu #dstbm-menu ul li {
+	display:inline;
+	padding-left:10px;
+}
+#top-bottom-menu #dstbm-menu ul li:first-child {
+	padding-left:0px;
+}
+#top-bottom-menu #dstbm-bottom {
+	position:absolute;
+	border:1px #cccccc solid;
+	cursor:pointer;
+}

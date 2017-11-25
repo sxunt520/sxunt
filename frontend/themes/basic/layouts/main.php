@@ -12,137 +12,149 @@ use frontend\assets\AppAsset;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 transitional//EN" "http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->registerMetaTag(['name' => 'keywords', 'content' => Yii::$app->config->get('SEO_SITE_KEYWORDS')]);?>
-    <?php $this->registerMetaTag(['name' => 'description', 'content' => Yii::$app->config->get('SEO_SITE_DESCRIPTION')]);?>
-    <?php $this->head() ?>
+<meta http-equiv="Content-Type" content="text/html; charset=<?= Yii::$app->charset ?>" />
+<?= Html::csrfMetaTags() ?>
+<title><?= Html::encode($this->title) ?></title>
+<?php $this->registerMetaTag(['name' => 'keywords', 'content' => Yii::$app->config->get('SEO_SITE_KEYWORDS')]);?>
+<?php $this->registerMetaTag(['name' => 'description', 'content' => Yii::$app->config->get('SEO_SITE_DESCRIPTION')]);?>
+<?php $this->head() ?>
+<link rel="Shortcut Icon" href="/new_static/images/favicon.ico"/>
+<script type="text/javascript" src="/new_static/js/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(this).dwseeTopBottomMenu()
+})
+</script>
 </head>
 <body>
 <?php $this->beginBody() ?>
-
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'options' => [
-            'class' => 'navbar-inverse navbar-static-top',
-        ],
-    ]);
-    $menuItems = [];
-    $menuItems[] = ['label' => '首页', 'url' => Yii::$app->homeUrl];
-    // 暂只支持两级,多了也没意义
-    foreach (\common\models\Category::tree(\common\models\Category::find()->where(['is_nav' => 1])->asArray()->all()) as $nav) {
-        $firstItem = ['label' => $nav['title'], 'url' => ['/article/index', 'cate' => $nav['name']]];
-        if (isset($nav['_child'])) {
-            $secondItems = [];
-            foreach($nav['_child'] as $second) {
-                $secondItems[] = ['label' => $second['title'], 'url' => ['/article/index', 'cate' => $second['name']]];
-            }
-            $firstItem['items'] = $secondItems;
-        }
-        $menuItems[] = $firstItem;
-    }
-    foreach (\common\models\Nav::find()->all() as $nav) {
-        $menuItems[] = ['label' => $nav['title'], 'url' => $nav['route']];
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => $menuItems,
-    ]);
-    $rightMenuItems = [];
-    $rightMenuItems[] = ['label' => '投稿', 'url' => ['/my/create-article']];
-    if (Yii::$app->user->isGuest) {
-        $rightMenuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
-        $rightMenuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
-    } else {
-        $rightMenuItems[] = [
-            'label' => Html::img(Yii::$app->user->identity->profile->avatarUrl, ['width' => 32, 'height' => 32]),
-            'linkOptions' => [
-                'class' => 'avatar'
-            ],
-            'items' => [
-                [
-                    'label' => Html::icon('user') . ' 个人信息',
-                    'url' => ['/my/profile'],
-                ],
-                [
-                    'label' => Html::icon('book') . ' 我的投稿',
-                    'url' => ['/my/article-list'],
-                ],
-                [
-                    'label' => Html::icon('thumbs-up') . ' 我顶过的',
-                    'url' => ['/my/up'],
-                ],
-                [
-                    'label' => Html::icon('star') . ' 我收藏的',
-                    'url' => ['/my/favourite'],
-                ],
-                [
-                    'label' => Html::icon('sign-out') . ' 退出',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post'],
-                ]
-            ]
-        ];
-    }
-    $rightMenuItems[] = [
-        'label'=>Yii::t('frontend', 'Language'),
-        'items'=>array_map(function ($code) {
-            return [
-                'label' => Yii::$app->params['availableLocales'][$code],
-                'url' => ['/site/set-locale', 'locale'=>$code],
-                'active' => Yii::$app->language === $code
-            ];
-        }, array_keys(Yii::$app->params['availableLocales']))
-    ];
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $rightMenuItems,
-        'encodeLabels' => false
-    ]);
-    NavBar::end();
-    ?>
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= \common\widgets\AlertPlus::widget()?>
-        <?= $content ?>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3"><a href="<?= \yii\helpers\Url::to(['/page/index', 'name' => 'mianze'])?>">免责声明</a></div>
-            <div class="col-sm-3"><a href="<?= \yii\helpers\Url::to(['/page/index', 'name' => 'aboutus'])?>">关于我们</a></div>
-            <div class="col-sm-3"><a href="<?= \yii\helpers\Url::to(['/page/index', 'name' => 'aboutme'])?>">关于我</a></div>
-            <div class="col-sm-3"><a href="<?= \yii\helpers\Url::to(['/suggest/create'])?>">问题反馈</a></div>
-            <div class="col-sm-3"><a href="https://github.com/yidashi/yii">获取源码</a></div>
+<!--top_Action-->
+<div class="top">
+    <div class="topC">
+        <h1><a href="/"><img src="/new_static/images/logo.png" width="230" height="80" /></a></h1>
+        <div class="nav">
+<ul>
+    <li><a href="/" class='navhover'>首&nbsp;页</a></li>
+    <li>
+    <a href="/edify/" >灵感渲染</a>
+        <div class="navList">
+          <span></span>
+          <a href="/edify/?source=1">人物写真</a><a href="/edify/?source=2">风光拍摄</a><a href="/edify/?source=3">纪实抓拍</a><a href="/edify/?source=4">生态微距</a><a href="/edify/?source=5">生活记录</a><a href="/edify/?source=6">商业摄影</a><a href="/edify/?source=7">其它拍摄</a>
+          </div>
+    </li>
+    <li>
+    <a href="/news/" >新闻资讯</a>
+        <div class="navList">
+          <span></span>
+              <a href="/news/?cid=30">影讯</a>
+              <a href="/news/?cid=31">器材</a>
+              <a href="/news/?cid=32">影赛</a>
+              <a href="/news/?cid=33">旅行</a>
+              <a href="/news/?cid=34">攻略</a>
+              <a href="/news/?cid=35">其它</a>
+          </div>
+    </li>
+    <li>
+    <a href="/skill.html" >摄影技巧</a>
+      <div class="navList">
+      <span></span>
+      <a href="/skill.php?subNav=1">名词解释</a><a href="/skill.php?subNav=2">器材基础</a><a href="/skill.php?subNav=3">拍摄技巧</a><a href="/skill.php?subNav=4">后期处理</a>
+      </div>
+    </li>
+    <li>
+    <a href="/course/" >摄影教程</a>
+        <div class="navList">
+          <span></span>
+              <a href="/course/approach/">入门篇</a>
+              <a href="/course/beginner/">初级篇</a>
+              <a href="/course/intermediate/">中级篇</a>
+              <a href="/course/lens/">镜头篇</a>
+              <a href="/course/tips/">拍摄篇</a>
+              <a href="/course/movie/">短片篇</a>
+              <a href="/course/application/">电脑篇</a>
+          </div>
+    </li>
+    <li>
+    <a href="/about.html" >关于始渲</a>
+         <div class="navList">
+          <span></span>
+              <a href="/gallery.html">画廊</a>
+              <a href="/diary.html">日记</a>
+              <a href="/message.shtml">留言板</a>
+              <a href="/aboutme.html">About me</a>
+          </div>
+    </li>
+    
+</ul>
         </div>
     </div>
-    <hr/>
-    <div class="container">
-        <p class="pull-left">&copy; <?= Yii::$app->config->get('SITE_NAME').' '.date('Y') ?></p>
-        <p class="pull-right"><?= Yii::$app->config->get('SITE_ICP')?></p>
-    </div>
-</footer>
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content"></div>
-    </div>
 </div>
-<!--回到顶部-->
-<?= \common\widgets\scroll\Scroll::widget()?>
-<?php if (YII_ENV_PROD):?>
-<!--页脚-->
-<?= Yii::$app->config->get('FOOTER')?>
-<?php endif; ?>
+<!--top_End-->
+<?= $content ?>
+<!--footNav_Action-->
+<div class="footNav">
+<div class="footNavC">
+   <div class="footbox">
+   <div class="part">
+   <h3>Partners</h3>
+      <a href="http://www.poco.cn/" target="_blank">POCO</a><br />
+        <a href="http://www.fengniao.com/" target="_blank">蜂鸟网</a><br />
+        <a href="http://www.haibao.com/" target="_blank">海报网</a><br />
+        <a href="http://www.yoka.com/" target="_blank">YOKA时尚网</a><br />
+        <a href="http://www.vogue.com.cn/" target="_blank">VOGUE 时尚网</a><br />
+    </div>
+   <div class="navi">
+    <h3>Navigation</h3>
+        <a href="/">主页</a><br />
+        <a href="/edify/">灵感渲染</a><br />
+        <a href="/news/">新闻资讯</a><br />
+        <a href="/skill.html">摄影技巧</a><br />
+        <a href="/course/">摄影教程</a><br />
+        <a href="/about.html">关于始渲</a><br />
+   </div>
+   <div class="me">
+   <h3>About Us</h3><br />
+       <a href="/aboutme.html"><img src="http://img.sxunt.com/uploadimg/1418131992.jpg" width="260" height="100" /></a><br />
+       <p>—— 最初渲染(Original Render) | 始渲(SXUNT)</p>
+       <div class="button"><a href="/about.html">More</a></div>
+   </div>
+   </div>
+</div>
+</div>
+<!--footNav_End-->
+<div class="footer">
+<div class="footerC">
+<p>Copyright © 2014 - All Rights Reserved - Original Render(SXUNT)</p>		
+</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {	
+	/*navList*/
+	$(".nav ul li").mouseover(function(){
+		$(this).find(".navList").show();
+		$(this).children("a").addClass("navhover2");
+	}).mouseout(function(){
+		$(this).find(".navList").hide();
+		$(this).children("a").removeClass("navhover2");
+	});
+	
+})
+</script>
+<div class="TopBottomMenu">
+	<ul>
+		<li><a href="/">首&nbsp;页</a></li>
+        <li><a href="/edify/">灵感渲染</a></li>
+        <li><a href="/news/">新闻资讯</a></li>
+		<li><a href="/skill.html">摄影技巧</a></li>
+        <li><a href="/course/">摄影教程</a></li>
+        <li><a href="/about.html">关于始渲</a></li>
+   </ul>
+</div>
+
 <?php $this->endBody() ?>
 </body>
 </html>
