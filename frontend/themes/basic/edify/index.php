@@ -3,7 +3,6 @@
 $this->title="灵感渲染";
 ?>
 <link href="/new_static/css/edifyCss.css" type="text/css" rel="stylesheet" />
-<link href="/new_static/css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
 <div class="px80"></div>
 <div class="topMenu yapiskan">
   <div class="topMenuC">
@@ -48,7 +47,6 @@ $this->title="灵感渲染";
 
     </div>
   
-<script src="/new_static/js/lanrenzhijia.js" type="text/javascript"></script>
 <script type="text/javascript">
 window.onload = function(){
 	//运行瀑布流主函数

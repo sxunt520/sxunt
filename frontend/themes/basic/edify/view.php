@@ -19,7 +19,6 @@ if($next){
 }
 ?>
 <link href="/new_static/css/css.css" rel="stylesheet" type="text/css" />
-<link href="/new_static/css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
 <LINK href="/new_static/css/sexylightbox.css" type=text/css rel=stylesheet>
 <div class="diaBox">
 <div class="diapage">
@@ -123,10 +122,9 @@ if($next){
         </div>  
     </div> 
 </div>
-<script src="/new_static/js/jqueryedify.min.js" type="text/javascript"></SCRIPT>
-<script src="/new_static/js/lanrenzhijia.js" type="text/javascript"></script>
-<SCRIPT src="/new_static/js/jquery.easing.1.3.js" type=text/javascript></SCRIPT>
-<SCRIPT src="/new_static/js/sexylightbox.v2.3.jquery.js" type=text/javascript></SCRIPT>
+<script src="/new_static/js/jqueryedify.min.js" type="text/javascript"></script>
+<script src="/new_static/js/jquery.easing.1.3.js" type=text/javascript></script>
+<script src="/new_static/js/sexylightbox.v2.3.jquery.js" type=text/javascript></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	

@@ -5,13 +5,11 @@ use common\helpers\Html;
 
 ?>
 <link href="/new_static/css/index.css" rel="stylesheet" type="text/css" />
-<link href="/new_static/css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/new_static/js/pc.js"></script>
 <script type="text/javascript" src="/new_static/js/jcarousellite.js"></script>
 <script type="text/javascript" src="/new_static/js/mf-pattern/mF_fancy.js"></script>
 <script type="text/javascript" src="/new_static/js/myfocus-2.0.1.min.js"></script>
 <script type="text/javascript" src="/new_static/js/index.js"></script>
-<script src="/new_static/js/lanrenzhijia.js" type="text/javascript"></script>
 <!--Banner_Action-->
 <div class="fWrap">
 <a href="javascript:void(0)" class="aLeft">

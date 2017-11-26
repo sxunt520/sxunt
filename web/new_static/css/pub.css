@@ -54,3 +54,13 @@ a:hover{ text-decoration:none;}
 .contPage a{display:inline-block;color:#898989;background:#fff;text-align:center;padding:0 7px;margin:0 1px;}
 .contPage a:hover{color:#fff;background:#898989;}
 .contPage a.on{color:#333;background:#E5EDF2;border:1px solid #C2D5E3;}
+
+/*新分页*/
+.page_ul{ overflow:hidden;height:30px;line-height:30px;text-align:center;letter-spacing:0;font-size:14px;margin-top:20px;}
+.page_ul ul.my_pager{ overflow:hidden; padding-left:35%;}
+.page_ul ul.my_pager li{ display: inline-block;text-align:center; float:left;}
+.page_ul ul.my_pager li.active{}
+.page_ul ul.my_pager li span{display:inline-block;text-align:center;padding:0 12px; height:28px; line-height:28px;margin:0 2px;}
+.page_ul ul.my_pager li a{display:inline-block;color:#333333;border:1px solid #E0E0E0;background:#f8f8f8;text-align:center;padding:0 12px; height:28px; line-height:28px;margin:0 2px;}
+.page_ul ul.my_pager li.active a{color:#fff;border:1px solid #ccc;background:#569231; font-weight:normal;}
+.page_ul ul.my_pager li a:hover{color:#fff;border:1px solid #898989;background:#569231;}

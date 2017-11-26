@@ -6,6 +6,7 @@
  */
 namespace frontend\controllers;
 
+use Yii;
 use common\models\Comment;
 use frontend\models\Tag;
 use frontend\models\Article;
@@ -19,15 +20,21 @@ class ArticleController extends Controller
     /**
      * 分类文章列表
      */
-    public function actionIndex($cate)
+    public function actionIndex()
     {
-        $category = Category::find()->andWhere(['name' => $cate])->one();
-        if (empty($category)) {
-            throw new NotFoundHttpException('分类不存在');
+        $cate=Yii::$app->request->get('cate');
+        if ($cate>0) {//获取所有
+            $query = Article::find()->published()->andFilterWhere(['category_id' => $cate]);
+        }else{
+            $query = Article::find()->published();
         }
-        $query = Article::find()->published()->andFilterWhere(['category_id' => $category->id]);
+        
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 8,
+                'validatePage' => false,//起过总页数返回空
+            ],
             'sort' => [
                 'defaultOrder' => [
                     'published_at' => SORT_DESC
@@ -41,7 +48,7 @@ class ArticleController extends Controller
         return $this->render('index', [
             'models' => $models,
             'pages' => $pages,
-            'category' => $category,
+            'cate' => $cate,
             'hotTags' => $hotTags
         ]);
     }

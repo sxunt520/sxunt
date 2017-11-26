@@ -23,11 +23,6 @@ AppAsset::register($this);
 <?php $this->head() ?>
 <link rel="Shortcut Icon" href="/new_static/images/favicon.ico"/>
 <script type="text/javascript" src="/new_static/js/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	$(this).dwseeTopBottomMenu()
-})
-</script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -54,12 +49,12 @@ $CCC_AAA=$CCC.'_'.$AAA;
     <a href="/article/" <?php if(in_array($CCC_AAA, ['article_index'])){echo 'class="navhover"';}?>>新闻资讯</a>
         <div class="navList">
           <span></span>
-              <a href="/news/?cid=30">影讯</a>
-              <a href="/news/?cid=31">器材</a>
-              <a href="/news/?cid=32">影赛</a>
-              <a href="/news/?cid=33">旅行</a>
-              <a href="/news/?cid=34">攻略</a>
-              <a href="/news/?cid=35">其它</a>
+              <a href="/article/?cate=1">影讯</a>
+              <a href="/article/?cate=2">器材</a>
+              <a href="/article/?cate=3">影赛</a>
+              <a href="/article/?cate=4">旅行</a>
+              <a href="/article/?cate=5">攻略</a>
+              <a href="/article/?cate=6">其它</a>
           </div>
     </li>
     <li>
@@ -154,6 +149,15 @@ $(document).ready(function() {
 	
 })
 </script>
+
+<?php if(!in_array($CCC_AAA, ['about_index','gallery_index'])){?>
+<link href="/new_static/css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
+<script src="/new_static/js/lanrenzhijia.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(this).dwseeTopBottomMenu()
+})
+</script>
 <div class="TopBottomMenu">
 	<ul style="background: #fff;">
 		<li><a href="/">首&nbsp;页</a></li>
@@ -164,6 +168,7 @@ $(document).ready(function() {
         <li><a href="/about.html">关于始渲</a></li>
    </ul>
 </div>
+<?php } ?>
 
 <?php $this->endBody() ?>
 </body>
