@@ -1,4 +1,4 @@
-@import url("./pub.css");
+/*@import url("./pub.css");*/
 body{ background:#F6F2E6;}
 a.mainTit{ width:95px; height:20px; overflow:hidden; display:inline-block; background:url(../images/mainTit.gif) no-repeat; position:absolute; left:11px;top:-10px; text-indent:-9999px;}
 a.tit1{ background-position:0 0;}

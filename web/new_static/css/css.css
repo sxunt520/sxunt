@@ -1,4 +1,4 @@
-@import url("./pub.css");
+/*@import url("./pub.css");*/
 .wonder{ height:32px; overflow:hidden; background:#FFFFFF;}
 .wonderC{ width:960px;height:32px; background:url(../images/wonderwall.gif) no-repeat left center;}
 .wonderPic{ overflow:hidden; background: url(../images/wonderwall2.jpg) center top; padding:30px 0;}

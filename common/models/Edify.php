@@ -78,4 +78,46 @@ class Edify extends \yii\db\ActiveRecord
             'px260Pic' => '缩略图片(Width:260px,Height:auto)',
         ];
     }
+    
+    //获取上一篇
+    public static function getprev($id){
+        $row=self::find()->select("id,title")->where(['checkinfo' => true])->andWhere(['>','id',$id])->orderBy('id ASC')->asArray()->one();
+        if($row){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    //获取下一篇
+    public static function getnext($id){
+        $row=self::find()->select("id,title")->where(['checkinfo' => true])->andWhere(['<','id',$id])->orderBy('id DESC')->asArray()->one();
+        if($row){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+    
+    /**
+     * 增加浏览量
+     */
+    public function addView()
+    {
+        $cache = \Yii::$app->cache;
+        $key = 'edify:view:'.$this->id;
+        $view = $cache->get($key);
+        if ($view !== false) {
+            if ($view >= 5) {//5次更新一次
+                $this->hits = $this->hits + $view + 1;
+                $this->save(false);
+                $cache->delete($key);
+            } else {
+                $cache->set($key, ++$view);
+            }
+        } else {
+            $cache->set($key, 1);
+        }
+    }
+    
 }

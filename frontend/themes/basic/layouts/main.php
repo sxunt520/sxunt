@@ -31,22 +31,27 @@ $(document).ready(function() {
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?php
+$CCC=Yii::$app->controller->id;
+$AAA=Yii::$app->controller->action->id;
+$CCC_AAA=$CCC.'_'.$AAA;
+?>
 <!--top_Action-->
 <div class="top">
     <div class="topC">
         <h1><a href="/"><img src="/new_static/images/logo.png" width="230" height="80" /></a></h1>
         <div class="nav">
 <ul>
-    <li><a href="/" class='navhover'>首&nbsp;页</a></li>
+    <li><a href="/" <?php if(in_array($CCC_AAA, ['site_index'])){echo 'class="navhover"';}?>>首&nbsp;页</a></li>
     <li>
-    <a href="/edify/" >灵感渲染</a>
+    <a href="/edify/" <?php if(in_array($CCC_AAA, ['edify_index'])){echo 'class="navhover"';}?>>灵感渲染</a>
         <div class="navList">
           <span></span>
           <a href="/edify/?source=1">人物写真</a><a href="/edify/?source=2">风光拍摄</a><a href="/edify/?source=3">纪实抓拍</a><a href="/edify/?source=4">生态微距</a><a href="/edify/?source=5">生活记录</a><a href="/edify/?source=6">商业摄影</a><a href="/edify/?source=7">其它拍摄</a>
           </div>
     </li>
     <li>
-    <a href="/news/" >新闻资讯</a>
+    <a href="/article/" <?php if(in_array($CCC_AAA, ['article_index'])){echo 'class="navhover"';}?>>新闻资讯</a>
         <div class="navList">
           <span></span>
               <a href="/news/?cid=30">影讯</a>
@@ -58,14 +63,14 @@ $(document).ready(function() {
           </div>
     </li>
     <li>
-    <a href="/skill.html" >摄影技巧</a>
+    <a href="/skill/" <?php if(in_array($CCC_AAA, ['skill_index'])){echo 'class="navhover"';}?>>摄影技巧</a>
       <div class="navList">
       <span></span>
       <a href="/skill.php?subNav=1">名词解释</a><a href="/skill.php?subNav=2">器材基础</a><a href="/skill.php?subNav=3">拍摄技巧</a><a href="/skill.php?subNav=4">后期处理</a>
       </div>
     </li>
     <li>
-    <a href="/course/" >摄影教程</a>
+    <a href="/course/" <?php if(in_array($CCC_AAA, ['course_index'])){echo 'class="navhover"';}?>>摄影教程</a>
         <div class="navList">
           <span></span>
               <a href="/course/approach/">入门篇</a>
@@ -78,7 +83,7 @@ $(document).ready(function() {
           </div>
     </li>
     <li>
-    <a href="/about.html" >关于始渲</a>
+    <a href="/about.html" <?php if(in_array($CCC_AAA, ['about_index'])){echo 'class="navhover"';}?>>关于始渲</a>
          <div class="navList">
           <span></span>
               <a href="/gallery.html">画廊</a>
@@ -94,6 +99,7 @@ $(document).ready(function() {
 </div>
 <!--top_End-->
 <?= $content ?>
+<?php if(!in_array($CCC_AAA, ['edify_index','gallery_index'])){?>
 <!--footNav_Action-->
 <div class="footNav">
 <div class="footNavC">
@@ -125,11 +131,15 @@ $(document).ready(function() {
 </div>
 </div>
 <!--footNav_End-->
+<?php }?>
+
+<?php if(!in_array($CCC_AAA, ['edify_index'])){?>
 <div class="footer">
 <div class="footerC">
-<p>Copyright © 2014 - All Rights Reserved - Original Render(SXUNT)</p>		
+<p>Copyright © 2018 - All Rights Reserved - Original Render(SXUNT)</p>		
 </div>
 </div>
+<?php }?>
 
 <script type="text/javascript">
 $(document).ready(function() {	
@@ -145,7 +155,7 @@ $(document).ready(function() {
 })
 </script>
 <div class="TopBottomMenu">
-	<ul>
+	<ul style="background: #fff;">
 		<li><a href="/">首&nbsp;页</a></li>
         <li><a href="/edify/">灵感渲染</a></li>
         <li><a href="/news/">新闻资讯</a></li>
