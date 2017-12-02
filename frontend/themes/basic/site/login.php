@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
 
 $this->title = Yii::t('app', 'Login');
 $this->params['breadcrumbs'][] = $this->title;
@@ -23,6 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                
+                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                    'template' => '<div class="MyVerifyCode">{image}{input}</div>',
+					'options' => ['class' => 'ipt','placeholder'=>"验证码"]
+                ])->label(false) ?>
 
                 <div style="color:#999;margin:1em 0">
                     如果忘记了密码，你可以 <?= Html::a('重置密码', ['site/request-password-reset']) ?>.

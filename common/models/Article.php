@@ -44,7 +44,7 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'category_id'], 'required'],
-            [['status', 'category_id', 'view', 'up', 'down', 'user_id'], 'integer'],
+            [['status', 'category_id', 'view', 'up', 'down', 'user_id','is_top'], 'integer'],
             [['category_id', 'status'], 'filter', 'filter' => 'intval'],
             [['published_at'], 'filter', 'filter' => 'strtotime', 'skipOnEmpty' => true],
             ['published_at', 'default', 'value' => time()],
@@ -83,7 +83,8 @@ class Article extends \yii\db\ActiveRecord
             'category' => '分类',
             'source' => '来源连接',
             'desc' => '摘要',
-            'tagNames' => '标签'
+            'tagNames' => '标签',
+            'is_top'=>'推荐顶至',
         ];
     }
     public function attributeHints()
@@ -214,7 +215,7 @@ class Article extends \yii\db\ActiveRecord
         $key = 'article:view:'.$this->id;
         $view = $cache->get($key);
         if ($view !== false) {
-            if ($view >= 20) {
+            if ($view >= 10) {
                 $this->view = $this->view + $view + 1;
                 $this->save(false);
                 $cache->delete($key);

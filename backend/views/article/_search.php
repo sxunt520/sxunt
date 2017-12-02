@@ -30,8 +30,10 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'updated_at') ?>
 
+    <?php  echo $form->field($model, 'is_top')->dropDownList(['' => '全部', '否', '是']) ?>
+    
     <?php  echo $form->field($model, 'status')->dropDownList(['' => '全部', '待审核', '正常']) ?>
-
+    
     <?php // echo $form->field($model, 'cover') ?>
 
     <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>

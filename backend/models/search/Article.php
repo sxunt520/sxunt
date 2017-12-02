@@ -17,7 +17,7 @@ class Article extends ArticleModel
     public function rules()
     {
         return [
-            [['id', 'category_id', 'created_at', 'updated_at', 'status'], 'integer'],
+            [['id', 'category_id', 'created_at', 'updated_at', 'status','is_top'], 'integer'],
             [['title', 'category', 'author', 'cover'], 'integer'],
         ];
     }
@@ -62,6 +62,7 @@ class Article extends ArticleModel
             'id' => $this->id,
             'category_id' => $this->category_id,
             'status' => $this->status,
+            'is_top' => $this->is_top,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

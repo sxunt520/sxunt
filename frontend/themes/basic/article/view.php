@@ -5,73 +5,69 @@
 /* @var $commentModels common\models\Comment */
 /* @var $pages yii\data\Pagination */
 use common\helpers\Html;
+use frontend\models\Article;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => $model->category, 'url' => ['/article/index', 'cate' => \common\models\Category::find()->where(['id' => $model->category_id])->select('name')->scalar()]];
 $this->params['breadcrumbs'][] = $model->title;
-?>
-<div class="col-lg-9">
-    <div class="view-title">
-        <h1><?= $model->title ?></h1>
-    </div>
-    <div class="action">
-        <span class="user"><a href="/user/31325"><?= Html::icon('user')?> <?= $model->author?></a></span>
-        <span class="time"><?= Html::icon('clock-o')?> <?= date('Y-m-d H:i', $model->created_at) ?></span>
-        <span class="views"><?= Html::icon('eye')?> <?= $model->trueView?>次浏览</span>
-        <span class="comments"><a href="#comments"><?= Html::icon('comments-o')?> <?=$model->comment?>条评论</a></span>
-        <span class="favourites">
-        <?php /* 
-           <?= Html::a(Html::icon($model->isFavourite ? 'star' : 'star-o') . ' <em>' . $model->favourite . '</em>', ['/favourite'], [
-                'data-params' => [
-                    'id' => $model->id
-                ],
-                'data-toggle' => 'tooltip',
-                'data-original-title' => '收藏'
-            ])?>
-         */ ?>
-        </span>
-        <!--   打赏作者     -->
-        <?= \frontend\widgets\reward\RewardWidget::widget(['articleId' => $model->id])?>
-        <span class="vote">
-            <a class="up" href="<?=\yii\helpers\Url::to(['/vote', 'id' => $model->id, 'type' => 'article', 'action' => 'up'])?>" title="" data-toggle="tooltip" data-original-title="顶"><?= Html::icon($model->isUp ? 'thumbs-up' : 'thumbs-o-up')?> <em><?=$model->up?></em></a>
-            <a class="down" href="<?=\yii\helpers\Url::to(['/vote', 'id' => $model->id, 'type' => 'article', 'action' => 'down'])?>" title="" data-toggle="tooltip" data-original-title="踩"><?= Html::icon($model->down ? 'thumbs-down' : 'thumbs-o-down')?> <em><?=$model->down?></em></a></span>
-    </div>
-    <ul class="tag-list list-inline">
-        <?php foreach($model->tags as $tag): ?>
-        <li><a class="label label-<?= $tag->level ?>" href="<?= \yii\helpers\Url::to(['article/tag', 'name' => $tag->name])?>"><?= $tag->name ?></a></li>
-        <?php endforeach; ?>
-    </ul>
-    <!--内容-->
-    <div class="view-content"><?= \yii\helpers\Markdown::process($model->data->content, 'gfm') ?></div>
-    <?php if (!empty($model->source)):?><div class="well well-sm">原文链接: <?= $model->source?></div><?php endif;?>
-    <div class="well">带到手机上看<?= Html::img(\yii\helpers\Url::to(['/qrcode', 'text' => Yii::$app->request->absoluteUrl])) ?></div>
 
-    <!--分享-->
-    <?= \common\widgets\share\Share::widget()?>
-    <?= $this->render('comment', ['model' => $model, 'commentModel' => $commentModel, 'commentModels' => $commentModels, 'pages' => $pages, 'commentDataProvider' => $commentDataProvider])?>
-</div>
-<div class="col-lg-3">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            热门<?=$model->category?>
-        </div>
-        <div class="panel-body">
-            <ul class="post-list">
-                <?php foreach ($hots as $item):?>
-                <li><?=Html::a($item->title, ['/article/view', 'id' => $item->id])?></li>
-                <?php endforeach;?>
-            </ul>
-        </div>
-    </div>
-</div>
-<?= \common\widgets\danmu\Danmu::widget(['id' => $model->id]);?>
-<?php
-$this->registerJsFile('@web/js/jquery.lazyload.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
-$this->registerJs(<<<js
-    $(function(){
-        $('.view-content iframe').addClass('embed-responsive-item').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-        $("img.lazy").show().lazyload({effect: "fadeIn"});
-    });
-js
-);
+//上一篇
+$prev=Article::getprev($model->id);
+if($prev){
+    $prev_a='<a href="/article/view?id='.$prev['id'].'">'.$prev['title'].'</a>';
+}else{
+    $prev_a='无';
+}
+//下一篇
+$next=Article::getnext($model->id);
+if($next){
+    $next_a='<a href="/article/view?id='.$next['id'].'">'.$next['title'].'</a>';
+}else{
+    $next_a='无';
+}
 ?>
+<link href="/new_static/css/news.css" rel="stylesheet" type="text/css" />
+<div class="bread">
+        <p>您的位置：<a href="/">首页</a>&nbsp;&gt;&nbsp;<a href="/news/">新闻资讯</a>&nbsp;&gt;&nbsp;<a href="/news/?cid=34">攻略</a>&nbsp;&gt;&nbsp;正文</p>
+        <div class="breadFx">
+            <div id="ckepop">
+            <span class="jiathis_txt">分享到：</span>
+            <a class="jiathis_button_weixin">微信</a>
+            <a class="jiathis_button_qzone">QQ空间</a>
+            <a class="jiathis_button_tsina">新浪微博</a>
+            <a class="jiathis_button_renren">人人网</a> 
+            <a href="http://www.jiathis.com/share"  class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+            <a class="jiathis_counter_style"></a>
+            </div> 
+            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
+        </div>
+</div>
+<div class="news">
+   <div class="newsPage">
+       <div class="newsPageT">
+         <div class="newsPageT2"><p>时间：<?php echo date("Y-m-d h:i:s",$model->created_at);?>&nbsp;&nbsp;&nbsp;&nbsp;来源：<?= $model->category;?>&nbsp;&nbsp;&nbsp;&nbsp;点击：<?= $model->trueView?></p><span>(编辑：<?= $model->author?>)</span></div>
+       </div>
+       <div class="newsPageMain">
+           <div class="newsPageMain2">
+               <h1><?= $model->title;?></h1>
+               <?php if(!empty($model->title)) echo '<div class="brief">'.$model->title.'</div>';?>
+					<div class="newsContent">
+					<?= \yii\helpers\Markdown::process($model->data->content, 'gfm') ?>
+                    </div>
+           </div>
+       </div>
+       <div class="newsPageB">
+           <div class="newsPageB2">
+                <span class="prevPage">上一篇：<?= $prev_a;?></span>
+                <span class="prevNext">下一篇：<?= $next_a;?></span>
+           </div>
+       </div>
+       
+       <div style=" margin-top:30px; border-top:2px solid #96B879;">
+       <?= $this->render('comment', ['model' => $model, 'commentModel' => $commentModel, 'commentModels' => $commentModels, 'pages' => $pages, 'commentDataProvider' => $commentDataProvider])?>
+       </div>
+   </div>
+   <div class="newsR">
+     <?php echo $this->render('_article_right', ['rightnews' => $rightnews]); ?>
+   </div>
+</div>

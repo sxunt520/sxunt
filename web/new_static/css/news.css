@@ -10,6 +10,7 @@ a.tit6{ background-position:0 -100px; left:451px;}
 a.tit7{ background-position:0 -120px;}
 a.tit8{ background-position:0 -140px;}
 a.tit9{ background-position:0 -160px;}
+a.tit10{ background-position:0 -183px;}
 a.mainTit:hover{filter:Alpha(Opacity=90);opacity:0.9;-moz-opacity:0.9;}
 a.moreA{ width:28px; padding-left:28px; height:16px; line-height:16px; color:#333; overflow:hidden; display:inline-block; background:url(../images/moreGray.gif) no-repeat 7px 0 #F6F2E6; position:absolute; right:11px;top:-9px; z-index:1000;}
 a.moreA:hover{ background-position:7px -16px; color:#AC411D;}
@@ -26,7 +27,7 @@ a.moreA:hover{ background-position:7px -16px; color:#AC411D;}
 .news{ width:1000px; height:auto; overflow:hidden; margin-top:17px; margin-bottom:24px;}
 .newsL{ width:695px; height:auto; overflow:hidden; float:left;}
 .newsTit{ width:695px; height:35px; position:relative;}
-.newsTit h2{ width:173px; height:35px; overflow:hidden; float:left; background:url(/images/newTit.gif) no-repeat; text-indent:-9999px;}
+.newsTit h2{ width:173px; height:35px; overflow:hidden; float:left; background:url(../images/newTit.gif) no-repeat; text-indent:-9999px;}
 .newsTit h3{ position:absolute; right:9px; bottom:-1px;height:34px;text-align:right; overflow:hidden;}
 .newsTit h3 a{ width:60px; height:29px; line-height:30px; margin:7px 1px 0 0; background:#333; display:inline-block; text-align:center; color:#fff; font-size:12px; font-weight:normal; outline:none;}
 .newsTit h3 a:hover{ width:60px; height:35px; line-height:34px;margin:2px 1px 0 0;}
@@ -52,7 +53,7 @@ a.moreA:hover{ background-position:7px -16px; color:#AC411D;}
 .newsR{ width:275px; height:auto; overflow:hidden; float:right; padding-left:15px; border-left:1px dotted #91CF6C;}
 .hotNews{ width:273px; height:auto;border:1px solid #E0E0E0; position:relative; margin-top:17px; padding-bottom:10px;}
 .hotNews ul{ width:239px; overflow:hidden; margin:16px auto 0;}
-.hotNews ul li{ width:227px; height:40px; border-bottom:1px solid #E9E7E2; padding-left:12px; background:url(/images/greedListBg.png) no-repeat 1px 17px; overflow:hidden; float:left;}
+.hotNews ul li{ width:227px; height:40px; border-bottom:1px solid #E9E7E2; padding-left:12px; background:url(../images/greedListBg.png) no-repeat 1px 17px; overflow:hidden; float:left;}
 .hotNews ul li p{ overflow:hidden; width:100%;}
 .hotNews ul li p a{ line-height:40px; color:#222; float:left;}
 .hotNews ul li p a:hover{ color:#AC411D;}
@@ -71,6 +72,12 @@ a.moreA:hover{ background-position:7px -16px; color:#AC411D;}
 .hotNews ul li dl{ display:none;}
 .hotNews ul li.firstLi p{ display:none;}
 .hotNews ul li.firstLi dl{ display:block;}
+
+.tag_hot{ width:273px; height:auto;border:1px solid #E0E0E0; position:relative; margin-top:17px; padding-bottom:0px;}
+.tag_hot ul{overflow:hidden; padding:30px 20px 10px;}
+.tag_hot ul li{ display:inline;}
+.tag_hot ul li a{ display:inline-block; padding:5px 10px;border-radius:3px;color:#fff;background:#569231; margin-bottom:10px;}
+.tag_hot ul li a:hover{background:#AC411D;}
 
 /***********************************内页部分******************************************/
 .newsPage{ width:704px; height:auto;overflow:hidden; float:left;}

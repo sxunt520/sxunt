@@ -31,7 +31,7 @@ if($next){
       <div class="diapageBC">  
              <div class="diatime">
                 <div class="diatimeL">
-             Time：<?php echo date("Y-m-d",$model->posttime);?>&nbsp;&nbsp;　　来源：<?php $sourceArr=['1'=>'人物写真','2'=>'风光拍摄','3'=>'纪实抓拍','4'=>'生态微距','5'=>'生活记录','6'=>'商业摄影','7'=>'其它拍摄'];echo $sourceArr[$model->source];?>&nbsp;&nbsp;　　点击：<?php echo $model->hits;?></div>
+             Time：<?php echo date("Y-m-d",$model->posttime);?>&nbsp;&nbsp;　　来源：<?php $sourceArr=['1'=>'人物写真','2'=>'风光拍摄','3'=>'纪实抓拍','4'=>'生态微距','5'=>'生活记录','6'=>'商业摄影','7'=>'其它拍摄'];echo $sourceArr[$model->source];?>&nbsp;&nbsp;　　点击：<?php echo $model->trueHits;?></div>
                 <div class="diatimeR">
                     <!-- JiaThis Button BEGIN -->
                     <div id="ckepop">
@@ -64,7 +64,7 @@ if($next){
             <div class="edifyBox">
             <?php 
                 $edify_url=Yii::getAlias('@static').$v['edify_url'];
-                $width=getimagesize($edify_url);
+                $width=@getimagesize($edify_url);
                 if($width[0]<=830){
                     $widthNum=$width[0];
                 }

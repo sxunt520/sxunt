@@ -150,7 +150,7 @@ $(document).ready(function() {
 })
 </script>
 
-<?php if(!in_array($CCC_AAA, ['about_index','gallery_index'])){?>
+<?php if(!in_array($CCC_AAA, ['about_index','gallery_index','article_view'])){?>
 <link href="/new_static/css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
 <script src="/new_static/js/lanrenzhijia.js" type="text/javascript"></script>
 <script type="text/javascript">

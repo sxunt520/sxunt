@@ -179,7 +179,7 @@ class SiteController extends Controller
         $rightnow_news = Article::find()
         ->active()
         //->andWhere(['<>', 'cover', ''])
-        ->orderBy(['view' => SORT_DESC])
+        ->orderBy(['is_top' => SORT_DESC,'id' => SORT_DESC])
         ->limit(5)
         ->all();
         

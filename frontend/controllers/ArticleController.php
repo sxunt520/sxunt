@@ -14,6 +14,7 @@ use common\models\Category;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use common\models\Edify;
 
 class ArticleController extends Controller
 {
@@ -37,19 +38,20 @@ class ArticleController extends Controller
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'published_at' => SORT_DESC
+                    'id' => SORT_DESC
                 ]
             ]
         ]);
         $pages = $dataProvider->getPagination();
         $models = $dataProvider->getModels();
-        // 热门标签
-        $hotTags = Tag::hot();
+        
+        $rightnews=$this->__get_rightnews();
+        
         return $this->render('index', [
             'models' => $models,
             'pages' => $pages,
             'cate' => $cate,
-            'hotTags' => $hotTags
+            'rightnews' => $rightnews,
         ]);
     }
 
@@ -58,6 +60,7 @@ class ArticleController extends Controller
      */
     public function actionTag($name)
     {
+        
         $tag = Tag::find()->where(['name' => $name])->one();
         if (empty($tag)) {
             throw new NotFoundHttpException('标签不存在');
@@ -67,21 +70,59 @@ class ArticleController extends Controller
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'published_at' => SORT_DESC
+                    'id' => SORT_DESC
                 ]
             ]
         ]);
         $pages = $dataProvider->getPagination();
         $models = $dataProvider->getModels();
-        // 热门标签
-        $hotTags = Tag::find()->orderBy('article desc')->all();
+        
+        $rightnews=$this->__get_rightnews();
+        
         return $this->render('index', [
             'models' => $models,
             'pages' => $pages,
-            'tag' => $tag,
-            'hotTags' => $hotTags
+            'tagname' => $name,
+            'cate' => '',
+            'rightnews' => $rightnews,
         ]);
     }
+    
+    //获取推荐资讯\热门资讯\灵感渲染\热门标签
+    private function __get_rightnews(){
+        $data=array();
+        //推荐资讯
+        $data['top_news'] = Article::find()
+        ->active()
+        ->andWhere(['<>', 'cover', ''])
+        //->andWhere(['=', 'is_top', 1])
+        ->orderBy(['is_top' => SORT_DESC,'id' => SORT_DESC])
+        ->limit(10)
+        ->all();
+        
+        //热门资讯
+        $data['hot_news'] = Article::find()
+        ->active()
+        ->andWhere(['<>', 'cover', ''])
+        ->orderBy(['view' => SORT_DESC])
+        ->limit(10)
+        ->all();
+        
+        //灵感渲染
+        $data['top_edify'] = Edify::find()
+        ->andWhere(['<>', 'picurl', ''])
+        ->andWhere(['=', 'checkinfo', true])
+        ->orderBy(['id' => SORT_DESC])
+        ->limit(10)
+        ->all();
+        
+        // 热门标签
+        //$data['hotTags'] = Tag::find()->orderBy('article desc')->all();
+        $data['hotTags'] = Tag::hot();
+        
+        return $data;
+    }
+    
     /**
      * 文章详情
      * @param $id
@@ -114,6 +155,8 @@ class ArticleController extends Controller
         $pages = $commentDataProvider->getPagination();
         // 评论框
         $commentModel = new Comment();
+        
+        $rightnews=$this->__get_rightnews();
 
         return $this->render('view', [
             'model' => $model,
@@ -121,7 +164,8 @@ class ArticleController extends Controller
             'commentModels' => $commentModels,
             'pages' => $pages,
             'hots' => $hots,
-            'commentDataProvider' => $commentDataProvider
+            'commentDataProvider' => $commentDataProvider,
+            'rightnews'=>$rightnews,
         ]);
     }
 }

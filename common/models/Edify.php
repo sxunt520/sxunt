@@ -79,6 +79,14 @@ class Edify extends \yii\db\ActiveRecord
         ];
     }
     
+    /**
+     * 真实浏览量
+     */
+    public function getTrueHits()
+    {
+        return $this->hits + \Yii::$app->cache->get('edify:view:' . $this->id);
+    }
+    
     //获取上一篇
     public static function getprev($id){
         $row=self::find()->select("id,title")->where(['checkinfo' => true])->andWhere(['>','id',$id])->orderBy('id ASC')->asArray()->one();
@@ -108,7 +116,7 @@ class Edify extends \yii\db\ActiveRecord
         $key = 'edify:view:'.$this->id;
         $view = $cache->get($key);
         if ($view !== false) {
-            if ($view >= 5) {//5次更新一次
+            if ($view >= 10) {//10次更新一次
                 $this->hits = $this->hits + $view + 1;
                 $this->save(false);
                 $cache->delete($key);

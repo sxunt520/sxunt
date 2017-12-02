@@ -63,4 +63,25 @@ class Article extends \common\models\Article
             ->orderBy('view desc')
             ->all();
     }
+    
+    //获取上一篇
+    public static function getprev($id){
+        $row=self::find()->select("id,title")->where(['status' => 1])->andWhere(['>','id',$id])->orderBy('id ASC')->asArray()->one();
+        if($row){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+    
+    //获取下一篇
+    public static function getnext($id){
+        $row=self::find()->select("id,title")->where(['status' => 1])->andWhere(['<','id',$id])->orderBy('id DESC')->asArray()->one();
+        if($row){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+    
 }
