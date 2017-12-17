@@ -39,14 +39,14 @@ $CCC_AAA=$CCC.'_'.$AAA;
 <ul>
     <li><a href="/" <?php if(in_array($CCC_AAA, ['site_index'])){echo 'class="navhover"';}?>>首&nbsp;页</a></li>
     <li>
-    <a href="/edify/" <?php if(in_array($CCC_AAA, ['edify_index'])){echo 'class="navhover"';}?>>灵感渲染</a>
+    <a href="/edify/" <?php if(in_array($CCC, ['edify'])){echo 'class="navhover"';}?>>灵感渲染</a>
         <div class="navList">
           <span></span>
           <a href="/edify/?source=1">人物写真</a><a href="/edify/?source=2">风光拍摄</a><a href="/edify/?source=3">纪实抓拍</a><a href="/edify/?source=4">生态微距</a><a href="/edify/?source=5">生活记录</a><a href="/edify/?source=6">商业摄影</a><a href="/edify/?source=7">其它拍摄</a>
           </div>
     </li>
     <li>
-    <a href="/article/" <?php if(in_array($CCC_AAA, ['article_index'])){echo 'class="navhover"';}?>>新闻资讯</a>
+    <a href="/article/" <?php if(in_array($CCC, ['article'])){echo 'class="navhover"';}?>>新闻资讯</a>
         <div class="navList">
           <span></span>
               <a href="/article/?cate=1">影讯</a>
@@ -58,10 +58,10 @@ $CCC_AAA=$CCC.'_'.$AAA;
           </div>
     </li>
     <li>
-    <a href="/skill/" <?php if(in_array($CCC_AAA, ['skill_index'])){echo 'class="navhover"';}?>>摄影技巧</a>
+    <a href="/skill/" <?php if(in_array($CCC, ['skill'])){echo 'class="navhover"';}?>>摄影技巧</a>
       <div class="navList">
       <span></span>
-      <a href="/skill.php?subNav=1">名词解释</a><a href="/skill.php?subNav=2">器材基础</a><a href="/skill.php?subNav=3">拍摄技巧</a><a href="/skill.php?subNav=4">后期处理</a>
+      <a href="/skill/?subNav=1">名词解释</a><a href="/skill/?subNav=2">器材基础</a><a href="/skill/?subNav=3">拍摄技巧</a><a href="/skill/?subNav=4">后期处理</a>
       </div>
     </li>
     <li>
@@ -78,13 +78,13 @@ $CCC_AAA=$CCC.'_'.$AAA;
           </div>
     </li>
     <li>
-    <a href="/about.html" <?php if(in_array($CCC_AAA, ['about_index'])){echo 'class="navhover"';}?>>关于始渲</a>
+    <a href="/about/" <?php if(in_array($CCC, ['about'])){echo 'class="navhover"';}?>>关于始渲</a>
          <div class="navList">
           <span></span>
-              <a href="/gallery.html">画廊</a>
-              <a href="/diary.html">日记</a>
-              <a href="/message.shtml">留言板</a>
-              <a href="/aboutme.html">About me</a>
+              <a href="/about/gallery/">画廊</a>
+              <a href="/about/diary/">日记</a>
+              <a href="/about/message/">留言板</a>
+              <a href="/about/aboutme/">About me</a>
           </div>
     </li>
     
@@ -94,7 +94,7 @@ $CCC_AAA=$CCC.'_'.$AAA;
 </div>
 <!--top_End-->
 <?= $content ?>
-<?php if(!in_array($CCC_AAA, ['edify_index','gallery_index'])){?>
+<?php if(!in_array($CCC_AAA, ['edify_index','about_gallery'])&&!in_array($CCC, ['course'])){?>
 <!--footNav_Action-->
 <div class="footNav">
 <div class="footNavC">
@@ -150,7 +150,7 @@ $(document).ready(function() {
 })
 </script>
 
-<?php if(!in_array($CCC_AAA, ['about_index','gallery_index','article_view'])){?>
+<?php if(!in_array($CCC_AAA, ['about_index','gallery_index','article_view'])&&!in_array($CCC, ['course'])){?>
 <link href="/new_static/css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
 <script src="/new_static/js/lanrenzhijia.js" type="text/javascript"></script>
 <script type="text/javascript">

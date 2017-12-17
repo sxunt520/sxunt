@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.box1{padding:30px; width:400px; height:400px; color:#FFF; overflow:hidden; position:relative;}
+.box2, .box4{padding:20px; width:420px; height:180px; color:#FFF; overflow:hidden; position:relative;}
+.box3{width:180px; height:180px; color:#FFF; padding:20px;}
+
+.box3 img{width:111px; margin:40px 34px 0;}
+.box3 span{padding:2px 8px;}
+
+.box3 .author{width:100%; clear:both; display:table;}
+.box3 .author_img, .author_txt{float:left;}
+.box3 .author_img img{margin:0; width:90px;}
+.box3 .author_txt{padding-left:10px;}
+.left{position:absolute; bottom:0; right:0;}
+.right{position:absolute; bottom:30px; left:30px;}
+img.left{width:460px; z-index:1;}
+
+.contents{margin-top:20px;}
+
+.slide{position:absolute;}
+.main_title{width:100%; display:inline-block;}
+
+
+.Hback{width:220px; height:220px; overflow:hidden;}
+.Hback1{width:220px; height:460px; overflow:hidden;}
+
+.return{width:27px; height:19px; background:url(../images/return.png) no-repeat; position:absolute; bottom:10px; right:10px;}
+
+.index16{margin-bottom:20px;}
+.index1 .box1 p span{display:inline-block;}
+.viewport{width:460px; height:460px; overflow:hidden; float:left; margin-right:20px; margin-bottom:20px}
+.viewport1{width:460px; height:220px; overflow:hidden; float:left;  margin-bottom:20px}
+.viewport2{width:220px; height:220px; overflow:hidden; float:left; margin-right:20px; margin-bottom:20px;}
+
+.scroll_txt{height:95px; overflow:hidden; position:relative;}
+.scroll_con{position:absolute; top:0;}
+
+.title_box{float:left; width:180px; height:110px; color:#FFF; text-align:center; padding:20px; line-height:1.2; margin-right:20px;}
+.title_explanation{float:left; width:660px; min-height:110px; padding:20px;}
+.text_prev, .text_next{width:30px; position:absolute; height:15px; display:block; cursor:pointer;}
+.text_prev{top:20px; left:215px;}
+.text_next{bottom:15px; left:215px;}
+
+.box_white_txt{position:absolute; z-index:3; width:400px;}
+.box_white_bg{position:absolute; z-index:1;}
+.size24-20{font-size:24px;}
+
+@media only screen and (min-width:960px){
+	.index3,.index6, .index10, .index13,.category4,.category8,.category12,.category16{margin-right:0;}
+
+}
+@media only screen and (min-width:768px) and (max-width: 959px) {
+	.title_explanation{width:420px;}
+	.index2, .index3, .index7, .index10, .index12, .index15, .category3,.category6,.category9,.category12,.category15, .category18{margin-right:0;}
+}
+@media only screen and (min-width:480px) and (max-width: 767px) {
+	.title_box,.title_explanation{width:100%; box-sizing:border-box;}
+	.index1, .index3, .index6, .index8, .index10, .index11, 	.index13, .index15,.category2,.category4,.category6,.category8,.category10,.category12,.category14,.category16, .category18{margin-right:0;}
+}
+@media only screen and (min-width:320px) and (max-width: 479px) {
+	.index1 .box1 p.size28{font-size:26px;}
+	.index1, .index1 .box1{height:400px;}
+	.main_title.pb20{padding-bottom:0;}
+	.title_box,.title_explanation{width:100%; box-sizing:border-box;}
+	.contents{margin-top:0;}
+	.index1, .index2, .index3, .index4, .index5, .index6, .index7, .index8, .index9, .index10, .index11, .index12, .index13, .index14, .index15, .index16, .category1, .categroy2, .category3, .category4, .category5, .category6, .category7, .category8, .category9, .category10, .category11, .category12, .viewport2,.category13,.category14,.category15,.category16,.category17,.category18{width:100%; margin:0;}
+	.box1, .box2, .box3, .box4{width:100%; box-sizing:border-box; height:100%;}
+	.box1 img, .box2 img, .box3 img{width:100%;}
+	.imgD{text-align:center;}
+	.imgD img{width:auto; }
+	.index2, .index2 .box2{height:260px;}
+	.index2, .index2 .box3{height:220px;}
+	.index15, .index15 .box3,.index14, .index14 .box3,.index13, .index13 .box3,.index12, .index12 .box3,.index11, .index11 .box3,.index10, .index10 .box3,.index9, .index9 .box3,.index8, .index8 .box3,.index7, .index7 .box3,.index6, .index6 .box3, .index3, .index3 .box3,.index4, .index5, .index5 .box3, .index4 .box3,.category1 .box3,.category2 .box3,.category3 .box3, .category4 .box3, .category5 .box3, .category6 .box3, .category7 .box3, .category8 .box3, .category9 .box3, .category10 .box3, .category11 .box3, .category12 .box3, .category13 .box3, .category14 .box3, .category15 .box3, .category16 .box3, .category17 .box3, .category18 .box3{height:220px;}
+	.box4{height:220px;}
+	.text_prev{left:45%}
+	.text_next{left:45%; top:}
+	.Hback1, .Hback{ width:100%;}
+	.right{bottom:19px;}
+	img.left{width:310px;}
+
+	.box_white_txt{position:absolute; z-index:3; width:260px;}
+	.box_white_bg{position:absolute; z-index:1;}
+	.size24-20{font-size:20px;}
+}
+@media only screen and (max-width: 319px) {
+	.index1 .box1 p.size28{font-size:26px;}
+	.index1, .index1 .box1{height:630px;}
+	.index2, .index2 .box3{height:220px;}
+	.main_title.pb20{padding-bottom:0;}
+	.title_box,.title_explanation{width:100%; box-sizing:border-box;}
+	.contents{margin-top:0;}
+	.index1, .index2, .index3, .index4, .index5, .index6, .index7, .index8, .index9, .index10, .index11, .index12, .index13, .index14, .index15, .index16, .category1, .categroy2, .category3, .category4, .category5, .category6, .category7, .category8, .category9, .category10, .category11, .category12, .viewport2,.category13,.category14,.category15,.category16,.category17,.category18{width:100%; margin:0;}
+	.box1, .box2, .box3, .box4{width:100%; box-sizing:border-box; height:100%;}
+	.box1 img, .box2 img, .box3 img{width:100%;}
+	.imgD{text-align:center;}
+	.imgD img{width:auto; }
+	.index2, .index2 .box2{height:220px;}
+	.index15, .index15 .box3,.index14, .index14 .box3,.index13, .index13 .box3,.index12, .index12 .box3,.index11, .index11 .box3,.index10, .index10 .box3,.index9, .index9 .box3,.index8, .index8 .box3,.index7, .index7 .box3,.index6, .index6 .box3, .index3, .index3 .box3,.index4, .index5, .index5 .box3, .index4 .box3,.category1 .box3,.category2 .box3,.category3 .box3, .category4 .box3, .category5 .box3, .category6 .box3, .category7 .box3, .category8 .box3, .category9 .box3, .category10 .box3, .category11 .box3, .category12 .box3, .category13 .box3, .category14 .box3, .category15 .box3, .category16 .box3, .category17 .box3, .category18 .box3{height:220px;}
+	.right{bottom:250px;}
+	.box4{height:220px;}
+	.text_prev{left:45%}
+	.text_next{left:45%; top:}
+	.Hback1, .Hback{ width:100%;}
+	.right{bottom:176px;}
+
+}

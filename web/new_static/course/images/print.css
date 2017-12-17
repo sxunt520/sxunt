@@ -1,0 +1,6 @@
+.main_title{display:table; width:100%;}
+.contents{ width:100%; display:table; overflow-x:hidden;}
+.categroy1, .categroy2, .categroy3{margin-right:20px;}
+.category4, .category8, .category12, .category16, .category20{margin-right:0;}
+.footer{width:940px; margin:0 auto; position:relative;}
+.viewport2{position:static;}
