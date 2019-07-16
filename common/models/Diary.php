@@ -69,4 +69,25 @@ class Diary extends \yii\db\ActiveRecord
             'description' => '关键字描述',
         ];
     }
+    
+    //获取上一篇
+    public static function getprev($id){
+        $row=self::find()->select("id,title")->andWhere(['>','id',$id])->orderBy('id ASC')->asArray()->one();
+        if($row){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+    
+    //获取下一篇
+    public static function getnext($id){
+        $row=self::find()->select("id,title")->andWhere(['<','id',$id])->orderBy('id DESC')->asArray()->one();
+        if($row){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+    
 }

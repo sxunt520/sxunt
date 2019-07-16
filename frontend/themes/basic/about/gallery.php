@@ -10,51 +10,14 @@ body{background:#000;}
 <div style="height:auto; overflow:hidden;">
 <div class="container">
     <div class="am-container" id="am-container">
-                <a href="diary_page-27.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398654964.jpg" alt="4.27江西三清山徙步野营" title="4.27江西三清山徙步野营" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398271570.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="javascript:void(0)" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398271167.jpg" alt="即将拆除的佛堂老街道" title="即将拆除的佛堂老街道" />
-    </a>
-                <a href="javascript:void(0)" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398271086.jpg" alt="即将拆除的佛堂老街道" title="即将拆除的佛堂老街道" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398270833.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398270515.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398270472.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398270443.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398270408.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398270382.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398270335.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398269141.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-26.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398269099.jpg" alt="4.13丽人网神丽峡野炊" title="4.13丽人网神丽峡野炊" />
-    </a>
-                <a href="diary_page-25.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398267543.jpg" alt="4.5松瀑山，我也感受下山水之间的宁静" title="4.5松瀑山，我也感受下山水之间的宁静" />
-    </a>
-                <a href="diary_page-25.html" target="_blank">
-    <img src="http://img.sxunt.com/uploadimg/1398267417.jpg" alt="4.5松瀑山，我也感受下山水之间的宁静" title="4.5松瀑山，我也感受下山水之间的宁静" />
-    </a>
+                <?php
+                foreach($models as $k=>$item){
+                    $pic=strpos($item['picsrc'], 'http:') === false ? (\Yii::getAlias('@static') . '/' . $item['picsrc']) : $item['picsrc'];
+                    ?>
+                    <a href="diary_page-25.html" target="_blank">
+                    <img src="<?= $pic?>" alt="<?= $item['describe']?>" title="<?= $item['describe']?>" />
+                    </a>
+                <?php }?> 
     			</div>
     <div id="loadmore" class="loadmore" style="width:100%;">load more...</div>
     </div>
