@@ -11,6 +11,7 @@ use yii\data\Pagination;
 
 use common\models\Gallery;
 use common\models\Diary;
+use common\models\Massage;
 
 class AboutController extends Controller
 {
@@ -87,7 +88,47 @@ class AboutController extends Controller
     
     public function actionMessage()
     {
-        return $this->render('message');
+        //$Message_rows=Massage::find()->orderBy('id DESC')->all();
+        
+        $query = Massage::find();
+        $countQuery = clone $query;
+        $pages = new Pagination(
+            [
+                'totalCount' => $countQuery->count(),
+                'pageSize' => 50,//显示条数
+                'validatePage' => false,//起过总页数返回空
+            ]
+        );
+        $Message_rows = $query->offset($pages->offset)
+        ->orderBy('id DESC')
+        ->limit($pages->limit)
+        ->all();
+        
+        if (Yii::$app->request->post()) {
+            //$dataArr=Yii::$app->request->post();
+        
+            $model=new Massage();
+            $model->name=Yii::$app->request->post('name');
+            $model->email=Yii::$app->request->post('email');
+            $model->tel=Yii::$app->request->post('tel');
+            $model->content=Yii::$app->request->post('content');
+            $model->lastdate=date("Y-m-d H:i:s");
+            
+            
+            if($model->validate()) {
+                $r=$model->save();
+                if($r){
+                    header("Content-type: text/html; charset=utf-8");
+                    echo "<script type='text/javascript'>alert('留言成功!');location.href='/about/message';</script>";exit;
+                }
+            }
+            
+        }else {
+            return $this->render('message', [
+                'Message_rows' => $Message_rows,
+            ]);
+        }
+        
     }
 
     public function actionAboutme()
