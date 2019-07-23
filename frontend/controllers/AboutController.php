@@ -17,7 +17,16 @@ class AboutController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        //惊异之墙
+        $wonderwall_row1 = Gallery::findBySql('SELECT * FROM `sxunt_gallery` where `show`=1 and (`cid`=10 or `cid`=11 or `cid`=12 or `cid`=20 or `cid`=21 or `cid`=23 ) ORDER BY id desc limit 0,15')->all();
+        $wonderwall_row2 = Gallery::findBySql('SELECT * FROM `sxunt_gallery` where `show`=1 and (`cid`=6 or `cid`=7 or `cid`=8 or `cid`=9 or `cid`=22) ORDER BY id desc limit 0,15')->all();
+        $wonderwall_row3 = Gallery::findBySql('SELECT * FROM `sxunt_gallery` where `show`=1 and (`cid`=14 or `cid`=15 or `cid`=16 or `cid`=17 or `cid`=18 or `cid`=19) ORDER BY id desc limit 0,15')->all();
+        
+        return $this->render('index',[
+            'wonderwall_row1'=>$wonderwall_row1,
+            'wonderwall_row2'=>$wonderwall_row2,
+            'wonderwall_row3'=>$wonderwall_row3
+        ]);
     }
     
     public function actionGallery()
