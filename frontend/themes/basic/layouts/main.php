@@ -83,7 +83,7 @@ $CCC_AAA=$CCC.'_'.$AAA;
           <span></span>
               <a href="/about/gallery/">画廊</a>
               <a href="/about/diary/">日记</a>
-              <a href="/about/message/">留言板</a>
+              <a href="/about/message/">建议</a>
               <a href="/about/aboutme/">About me</a>
           </div>
     </li>
@@ -111,16 +111,16 @@ $CCC_AAA=$CCC.'_'.$AAA;
     <h3>Navigation</h3>
         <a href="/">主页</a><br />
         <a href="/edify/">灵感渲染</a><br />
-        <a href="/news/">新闻资讯</a><br />
-        <a href="/skill.html">摄影技巧</a><br />
+        <a href="/article/">新闻资讯</a><br />
+        <a href="/skill/">摄影技巧</a><br />
         <a href="/course/">摄影教程</a><br />
-        <a href="/about.html">关于始渲</a><br />
+        <a href="/about/">关于始渲</a><br />
    </div>
    <div class="me">
    <h3>About Us</h3><br />
-       <a href="/aboutme.html"><img src="http://img.sxunt.com/uploadimg/1418131992.jpg" width="260" height="100" /></a><br />
+       <a href="/about/"><img src="http://img.sxunt.com/uploadimg/1418131992.jpg" width="260" height="100" /></a><br />
        <p>—— 最初渲染(Original Render) | 始渲(SXUNT)</p>
-       <div class="button"><a href="/about.html">More</a></div>
+       <div class="button"><a href="/about/">More</a></div>
    </div>
    </div>
 </div>
@@ -162,10 +162,10 @@ $(document).ready(function() {
 	<ul style="background: #fff;">
 		<li><a href="/">首&nbsp;页</a></li>
         <li><a href="/edify/">灵感渲染</a></li>
-        <li><a href="/news/">新闻资讯</a></li>
-		<li><a href="/skill.html">摄影技巧</a></li>
+        <li><a href="/article/">新闻资讯</a></li>
+		<li><a href="/skill/">摄影技巧</a></li>
         <li><a href="/course/">摄影教程</a></li>
-        <li><a href="/about.html">关于始渲</a></li>
+        <li><a href="/about/">关于始渲</a></li>
    </ul>
 </div>
 <?php } ?>
