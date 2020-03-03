@@ -23,7 +23,7 @@ class EdifyController extends \yii\web\Controller
         $pages = new Pagination(
             [
                 'totalCount' => $countQuery->count(),
-                'pageSize' => 10,//显示条数
+                'pageSize' => 15,//显示条数
                 'validatePage' => false,//起过总页数返回空
             ]
             );
